@@ -5,6 +5,7 @@ import 'package:graduationproject/models/usersData.dart';
 import 'package:graduationproject/utils/FirbaseHelper.dart';
 
 class FbFirstoreController with FirbaseHelper {
+  
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Stream<QuerySnapshot<Expense>> read() async* {
@@ -27,17 +28,16 @@ class FbFirstoreController with FirbaseHelper {
         .snapshots();
   }
 
-  Stream<QuerySnapshot<userData>> userDataRead() async* {
+  Stream<QuerySnapshot<userData>> userDataRead(dynamic subId) async* {
     yield* _firestore
-        .collection('user2').where('subscriptionNumber',isEqualTo: 407000010)
+        .collection('usersData').where('subscriptionNumber',isEqualTo: subId )
         .withConverter<userData>(
 
             fromFirestore: (snapshot, options) =>
                 userData.fromMap(snapshot.data()!),
             toFirestore: (value, options) => value.toMap())
         .snapshots();
-    print(true);
-
+    print('mayssssssss');
   }
 
 

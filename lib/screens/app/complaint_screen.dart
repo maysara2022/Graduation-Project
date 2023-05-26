@@ -6,12 +6,12 @@ import 'package:graduationproject/firebase/ComplaintController.dart';
 import 'package:graduationproject/widgets/login%20textfiled.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ComplaintScreen extends StatefulWidget {
-   ComplaintScreen({Key? key}) : super(key: key);
 
+class Complaintscreen extends StatefulWidget {
+  Complaintscreen({Key? key}) : super(key: key);
 
   @override
-  State<ComplaintScreen> createState() => _ComplaintScreenState();
+  State<Complaintscreen> createState() => _ComplaintScreenState();
 }
 
 final _formKey = GlobalKey<FormState>();
@@ -20,14 +20,12 @@ final _descriptionController = TextEditingController();
 final _adressController = TextEditingController();
 final _typeController = TextEditingController();
 XFile? _imageFile;
-
-
-
-
+String? addressselectedValue;
+String? typeselectedValue;
 
 String dropdownValue = 'اختر نوع الشكوى';
 
-class _ComplaintScreenState extends State<ComplaintScreen> {
+class _ComplaintScreenState extends State<Complaintscreen> {
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -47,16 +45,16 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                 tabs: [
                   Tab(
                       child: Text(
-                    'تقديم شكوى ',
-                    style:
+                        'تقديم شكوى ',
+                        style:
                         GoogleFonts.cairo(color: Colors.black45, fontSize: 14),
-                  )),
+                      )),
                   Tab(
                       child: Text(
-                    'الشكاوي والردود ',
-                    style:
+                        'الشكاوي والردود ',
+                        style:
                         GoogleFonts.cairo(color: Colors.black45, fontSize: 14),
-                  )),
+                      )),
                 ],
               ),
               title: Text(
@@ -72,7 +70,9 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: 15,),
+                        SizedBox(
+                          height: 15,
+                        ),
                         TextFiledX(
                           title: 'عنوان الشكوى',
                           hint: 'أدخل عنوان الشكوى',
@@ -101,7 +101,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
                                 borderSide:
-                                    BorderSide(width: .4, color: Colors.grey)),
+                                BorderSide(width: .4, color: Colors.grey)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15),
                             ),
@@ -132,23 +132,23 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                 ),
-                                items: <String>[
-                                  'المجاري',
-                                  'اضاءة',
-                                  'بنية التحتية',
-                                  'الحاويات النفايات'
-                                ].map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(
-                                      value,
-                                      style: TextStyle(fontSize: 20),
-                                    ),
-                                  );
-                                }).toList(),
-                                onChanged: (String? newValue) {
+                                items: [
+                                  DropdownMenuItem(
+                                    value: 'بنية التحتية',
+                                    child: Text('بنية التحتية',style: GoogleFonts.cairo(color: Colors.black),),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 'الاضاءة الشوارع',
+                                    child: Text('الاضاءة الشوارع',style: GoogleFonts.cairo(color: Colors.black),),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 'غير ذلك',
+                                    child: Text('غير ذلك',style: GoogleFonts.cairo(color: Colors.black),),
+                                  ),
+                                ],
+                                onChanged: (value) {
                                   setState(() {
-                                    dropdownValue = newValue!;
+                                    typeselectedValue = value;
                                   });
                                 },
                               ),
@@ -177,24 +177,17 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                                 borderRadius: BorderRadius.circular(15),
                               ),
                             ),
-                            items: <String>[
-                              'المجاري',
-                              'اضاءة',
-                              'بنية التحتية',
-                              'الحاويات النفايات'
-                            ].map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(
-                                  value,
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.black),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
+                            items: [
+                              DropdownMenuItem(
+                                  value: 'بلوك 1', child: Text('بلوك 1',style: GoogleFonts.cairo(color: Colors.black),)),
+                              DropdownMenuItem(
+                                  value: 'بلوك 2', child: Text('بلوك 2',style: GoogleFonts.cairo(color: Colors.black),)),
+                              DropdownMenuItem(
+                                  value: 'بلوك 3', child: Text('بلوك 3',style: GoogleFonts.cairo(color: Colors.black),)),
+                            ],
+                            onChanged: (value) {
                               setState(() {
-                                dropdownValue = newValue!;
+                                addressselectedValue = value!;
                               });
                             },
                           ),
@@ -211,7 +204,7 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                           height: 8,
                         ),
                         GestureDetector(
-                          onTap: ()async {
+                          onTap: () async {
                             final XFile? imageFile = await ImagePicker()
                                 .pickImage(source: ImageSource.gallery);
                             if (imageFile != null) {
@@ -225,7 +218,8 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                             height: 150,
                             decoration: BoxDecoration(
                               color: Colors.grey.shade200,
-                              borderRadius: BorderRadiusDirectional.circular(20),
+                              borderRadius:
+                              BorderRadiusDirectional.circular(20),
                             ),
                             child: SingleChildScrollView(
                               child: Column(
@@ -236,21 +230,23 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                                       File(_imageFile!.path),
                                       fit: BoxFit.cover,
                                     ),
-                                  Column(
-                                    children: [
-                                      Icon(Icons.photo_size_select_actual_outlined),
-                                      Text(
-                                        'صورة للمشكلة',
-                                        style: GoogleFonts.cairo(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'JPG , JPEG',
-                                        style: GoogleFonts.cairo(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
+                                  if (_imageFile == null)
+                                    Column(
+                                      children: [
+                                        Icon(Icons
+                                            .photo_size_select_actual_outlined),
+                                        Text(
+                                          'صورة للمشكلة',
+                                          style: GoogleFonts.cairo(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          'JPG , JPEG',
+                                          style: GoogleFonts.cairo(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
                                 ],
                               ),
                             ),
@@ -264,16 +260,15 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                  await ComlaintController().addComlaint(
-                                    _titleController.text,
-                                    _descriptionController.text,
-                                    _typeController.text,
-                                    _adressController.text,
-                                    _imageFile!,
-                                  );
-                                } else {}
-                                Navigator.of(context).pop();
+
+                              await ComlaintController().addComlaint(
+                                _titleController.text,
+                                _descriptionController.text,
+                                typeselectedValue!,
+                                addressselectedValue!,
+                                _imageFile!,
+                              );
+                              Navigator.of(context).pop();
                             },
                             child: Text(
                               "إرسال",

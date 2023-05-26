@@ -1,10 +1,10 @@
 class userData {
- late String? subscriptionNumber;
- late String? iDNumber;
- late String? currentBillValue;
- late String? arrearsValue;
- late String? month1;
- late String? month2;
+ late dynamic subscriptionNumber;
+ late dynamic iDNumber;
+ late dynamic currentBillValue;
+ late dynamic arrearsValue;
+ late dynamic month1;
+ late dynamic month2;
 
   userData(
       {

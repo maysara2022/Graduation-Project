@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/firebase/fb_auth_controller.dart';
 import 'package:graduationproject/firebase/fb_firstore_controller.dart';
 import 'package:graduationproject/models/firebase_response.dart';
 import 'package:graduationproject/prefs/shared_pref_controller.dart';
+import 'package:graduationproject/screens/app/fatora_screen.dart';
 import 'package:graduationproject/utils/context-extenssion.dart';
 
 import '../../widgets/login textfiled.dart';
@@ -25,6 +28,8 @@ class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController _phoneTextController;
   late TextEditingController _idNumberTextController;
   late TextEditingController _subIdTextController;
+  late String sub = _subIdTextController as String;
+
   String? _EmailError;
   String? _nameError;
   String? _passwordError;
@@ -150,6 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         hint: 'أدخل رقم اشتراك المياه',
                         prefIcon: Icon(Icons.credit_card),
                         controll: _subIdTextController,
+
                       ),
                       const SizedBox(
                         height: 5,
@@ -202,6 +208,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextButton(
                               onPressed: () {
                                 Navigator.pushNamed(context, '/sign_in');
+                                Get.to(FatoraScreen(),arguments: [sub]);
                               },
                               child: Text(
                                 "تسجيل الدخول",
@@ -247,7 +254,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (response.success)
       Navigator.pushReplacementNamed(context, '/home_screen');
     context.shwoMassege(message: response.message, error: !response.success);
-    SharedPrefController().save(email: _emailTextController.text);
+    SharedPrefController().save(email: _emailTextController.text,sub:_subIdTextController.text);
   }
 
 }
