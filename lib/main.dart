@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         '/lunch_screen': (context) => const lunch_screen(),
         '/log_up': (context) => LoginScreen(),
         '/sign_in': (context) => SignInScreen(),
-        '/home_scree': (context) =>  HomeScreen(),
+        '/home_screen': (context) =>  HomeScreen(),
         '/fatora_screen': (context) =>  FatoraScreen(),
         '/lastNews_screen': (context) => const LastNews(),
         '/lastAds': (context) =>  const LastAds(),
