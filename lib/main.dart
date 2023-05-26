@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         '/log_up': (context) => LoginScreen(),
         '/sign_in': (context) => SignInScreen(),
         '/home_screen': (context) =>  HomeScreen(),
-        '/fatora_screen': (context) => const FatoraScreen(),
+        '/fatora_screen': (context) =>  FatoraScreen(),
         '/lastNews_screen': (context) => const LastNews(),
         '/lastAds': (context) =>  const LastAds(),
         '/emergency_screen': (context) => const EmergencyScreen(),

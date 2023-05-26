@@ -20,7 +20,7 @@ class _BottomBarState extends State<BottomBar> {
   List<BnScreen> _bnscreen = <BnScreen>[
     BnScreen(title: 'Home', widget: HomeScreen()),
     BnScreen(title: 'Map', widget: MapScreen()),
-    BnScreen(title: 'AddProdlem', widget: ComplaintScreen()),
+    BnScreen(title: 'AddProdlem', widget: Complaintscreen()),
     BnScreen(title: 'Setting', widget: MoreScreen()),
   ];
 

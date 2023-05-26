@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum PrefKeys { loggedIn, email }
+enum PrefKeys { loggedIn, email,sub }
 
 class SharedPrefController {
   SharedPrefController._();
@@ -16,9 +16,10 @@ class SharedPrefController {
     _sharedPrefereces = await SharedPreferences.getInstance();
   }
 
-  Future<void> save({required String email}) async {
+  Future<void> save({required String email, String? sub}) async {
     await _sharedPrefereces.setBool(PrefKeys.loggedIn.name, true);
     await _sharedPrefereces.setString(PrefKeys.email.name, email);
+    await _sharedPrefereces.setString(PrefKeys.sub.name, sub!);
   }
   bool get loggedIn =>_sharedPrefereces.getBool(PrefKeys.loggedIn.name)??false;
 
