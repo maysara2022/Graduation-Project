@@ -155,7 +155,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         hint: 'أدخل رقم اشتراك المياه',
                         prefIcon: Icon(Icons.credit_card),
                         controll: _subIdTextController,
-
                       ),
                       const SizedBox(
                         height: 5,
@@ -184,7 +183,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: ElevatedButton(
                           onPressed: () {
                             _register();
-                            },
+                          },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xFFb70e0e),
                               shape: RoundedRectangleBorder(
@@ -208,7 +207,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           TextButton(
                               onPressed: () {
                                 Navigator.pushNamed(context, '/sign_in');
-                                Get.to(FatoraScreen(),arguments: [sub]);
+                                Get.to(FatoraScreen(), arguments: [sub]);
                               },
                               child: Text(
                                 "تسجيل الدخول",
@@ -250,11 +249,17 @@ class _LoginScreenState extends State<LoginScreen> {
         _emailTextController.text,
         _passwordTextController.text,
         _nameEditingController.text);
-    FbFirstoreController().createUserInFirestore(_nameEditingController.text, _phoneTextController.text, _idNumberTextController.text, _emailTextController.text, _subIdTextController.text, response.id);
+    FbFirstoreController().createUserInFirestore(
+        _nameEditingController.text,
+        _phoneTextController.text,
+        _idNumberTextController.text,
+        _emailTextController.text,
+        _subIdTextController.text,
+        response.id);
     if (response.success)
       Navigator.pushReplacementNamed(context, '/home_screen');
     context.shwoMassege(message: response.message, error: !response.success);
-    SharedPrefController().save(email: _emailTextController.text,sub:_subIdTextController.text);
+    SharedPrefController()
+        .save(email: _emailTextController.text, sub: _subIdTextController.text,userId: response.id);
   }
-
 }

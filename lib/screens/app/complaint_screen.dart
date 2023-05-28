@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/firebase/ComplaintController.dart';
+import 'package:graduationproject/prefs/shared_pref_controller.dart';
 import 'package:graduationproject/widgets/login%20textfiled.dart';
 import 'package:image_picker/image_picker.dart';
-
 
 class Complaintscreen extends StatefulWidget {
   Complaintscreen({Key? key}) : super(key: key);
@@ -21,6 +21,9 @@ final _adressController = TextEditingController();
 final _typeController = TextEditingController();
 XFile? _imageFile;
 String? addressselectedValue;
+String userId =
+    SharedPrefController().getValue<String>(key: PrefKeys.userId.name)!;
+
 String? typeselectedValue;
 
 String dropdownValue = 'اختر نوع الشكوى';
@@ -45,16 +48,16 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                 tabs: [
                   Tab(
                       child: Text(
-                        'تقديم شكوى ',
-                        style:
+                    'تقديم شكوى ',
+                    style:
                         GoogleFonts.cairo(color: Colors.black45, fontSize: 14),
-                      )),
+                  )),
                   Tab(
                       child: Text(
-                        'الشكاوي والردود ',
-                        style:
+                    'الشكاوي والردود ',
+                    style:
                         GoogleFonts.cairo(color: Colors.black45, fontSize: 14),
-                      )),
+                  )),
                 ],
               ),
               title: Text(
@@ -101,7 +104,7 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15),
                                 borderSide:
-                                BorderSide(width: .4, color: Colors.grey)),
+                                    BorderSide(width: .4, color: Colors.grey)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15),
                             ),
@@ -135,15 +138,27 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                                 items: [
                                   DropdownMenuItem(
                                     value: 'بنية التحتية',
-                                    child: Text('بنية التحتية',style: GoogleFonts.cairo(color: Colors.black),),
+                                    child: Text(
+                                      'بنية التحتية',
+                                      style: GoogleFonts.cairo(
+                                          color: Colors.black),
+                                    ),
                                   ),
                                   DropdownMenuItem(
                                     value: 'الاضاءة الشوارع',
-                                    child: Text('الاضاءة الشوارع',style: GoogleFonts.cairo(color: Colors.black),),
+                                    child: Text(
+                                      'الاضاءة الشوارع',
+                                      style: GoogleFonts.cairo(
+                                          color: Colors.black),
+                                    ),
                                   ),
                                   DropdownMenuItem(
                                     value: 'غير ذلك',
-                                    child: Text('غير ذلك',style: GoogleFonts.cairo(color: Colors.black),),
+                                    child: Text(
+                                      'غير ذلك',
+                                      style: GoogleFonts.cairo(
+                                          color: Colors.black),
+                                    ),
                                   ),
                                 ],
                                 onChanged: (value) {
@@ -179,11 +194,26 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                             ),
                             items: [
                               DropdownMenuItem(
-                                  value: 'بلوك 1', child: Text('بلوك 1',style: GoogleFonts.cairo(color: Colors.black),)),
+                                  value: 'بلوك 1',
+                                  child: Text(
+                                    'بلوك 1',
+                                    style:
+                                        GoogleFonts.cairo(color: Colors.black),
+                                  )),
                               DropdownMenuItem(
-                                  value: 'بلوك 2', child: Text('بلوك 2',style: GoogleFonts.cairo(color: Colors.black),)),
+                                  value: 'بلوك 2',
+                                  child: Text(
+                                    'بلوك 2',
+                                    style:
+                                        GoogleFonts.cairo(color: Colors.black),
+                                  )),
                               DropdownMenuItem(
-                                  value: 'بلوك 3', child: Text('بلوك 3',style: GoogleFonts.cairo(color: Colors.black),)),
+                                  value: 'بلوك 3',
+                                  child: Text(
+                                    'بلوك 3',
+                                    style:
+                                        GoogleFonts.cairo(color: Colors.black),
+                                  )),
                             ],
                             onChanged: (value) {
                               setState(() {
@@ -219,7 +249,7 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                             decoration: BoxDecoration(
                               color: Colors.grey.shade200,
                               borderRadius:
-                              BorderRadiusDirectional.circular(20),
+                                  BorderRadiusDirectional.circular(20),
                             ),
                             child: SingleChildScrollView(
                               child: Column(
@@ -260,15 +290,16 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () async {
-
                               await ComlaintController().addComlaint(
                                 _titleController.text,
                                 _descriptionController.text,
                                 typeselectedValue!,
                                 addressselectedValue!,
                                 _imageFile!,
+                                userId,
                               );
-                              Navigator.of(context).pop();
+                              _titleController.clear();
+                              _descriptionController.clear();
                             },
                             child: Text(
                               "إرسال",
