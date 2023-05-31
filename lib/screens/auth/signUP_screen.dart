@@ -257,7 +257,7 @@ class _LoginScreenState extends State<LoginScreen> {
         _subIdTextController.text,
         response.id);
     if (response.success)
-      Navigator.pushReplacementNamed(context, '/home_screen');
+      Navigator.pushReplacementNamed(context, '/bottom_screen');
     context.shwoMassege(message: response.message, error: !response.success);
     SharedPrefController()
         .save(email: _emailTextController.text, sub: _subIdTextController.text,userId: response.id);

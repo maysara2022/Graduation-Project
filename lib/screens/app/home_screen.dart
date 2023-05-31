@@ -53,7 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/ComplaintPage');
+              },
               icon: Icon(Icons.search),
             ),
           ],

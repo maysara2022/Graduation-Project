@@ -5,11 +5,11 @@ class ModelAds {
   late String? content;
   late Timestamp? time;
 
-  ModelAds(
-      {required this.title,
-        required this.content,
-        required this.time,
-      });
+  ModelAds({
+    required this.title,
+    required this.content,
+    required this.time,
+  });
 
   ModelAds.fromMap(Map<String, dynamic> json) {
     title = json['title'];
@@ -18,7 +18,7 @@ class ModelAds {
   }
 
   Map<String, dynamic> toMap() {
-    final Map<String, dynamic> data =  <String, dynamic>{};
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['title'] = title;
     data['content'] = content;
     data['time'] = time;

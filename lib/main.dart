@@ -4,6 +4,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:graduationproject/bottomBar/bottom_bar_screen.dart';
 import 'package:graduationproject/firebase_options.dart';
 import 'package:graduationproject/prefs/shared_pref_controller.dart';
+import 'package:graduationproject/screens/app/Comlaint.dart';
+import 'package:graduationproject/screens/app/Complant%20Screen%20_view.dart';
 import 'package:graduationproject/screens/app/emergency_screen.dart';
 import 'package:graduationproject/screens/app/fatora_screen.dart';
 import 'package:graduationproject/screens/app/home_screen.dart';
@@ -46,17 +48,19 @@ class MyApp extends StatelessWidget {
         '/lunch_screen': (context) => const lunch_screen(),
         '/log_up': (context) => LoginScreen(),
         '/sign_in': (context) => SignInScreen(),
-        '/home_screen': (context) =>  HomeScreen(),
-        '/fatora_screen': (context) =>  FatoraScreen(),
+        '/home_screen': (context) => HomeScreen(),
+        '/fatora_screen': (context) => FatoraScreen(),
         '/lastNews_screen': (context) => const LastNews(),
-        '/lastAds': (context) =>  const LastAds(),
+        '/lastAds': (context) => const LastAds(),
         '/emergency_screen': (context) => const EmergencyScreen(),
         '/bottom_screen': (context) => const BottomBar(),
-        '/myTapBar': (context) =>  const MyTabBar(),
-        '/moreOfMore': (context) =>  const MoreOFMore(),
-        '/possMassage': (context) =>  const WordScreen(),
-        '/about': (context) =>  const AboutMaghazi(),
-        '/bladyeMassage': (context) =>  const message_Baldia(),
+        '/myTapBar': (context) => const MyTabBar(),
+        '/moreOfMore': (context) => const MoreOFMore(),
+        '/possMassage': (context) => const WordScreen(),
+        '/about': (context) => const AboutMaghazi(),
+        '/bladyeMassage': (context) => const message_Baldia(),
+        '/ComplaintPage': (context) => ComplaintPage(),
+        '/Complaintscreen': (context) => Complaintscreen(),
       },
     );
   }

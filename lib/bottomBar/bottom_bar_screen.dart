@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/bottomBar/bn_screen.dart';
-import 'package:graduationproject/screens/app/complaint_screen.dart';
+import 'package:graduationproject/screens/app/Complant%20Screen%20_view.dart';
 import 'package:graduationproject/screens/app/home_screen.dart';
 import 'package:graduationproject/screens/app/map_screen.dart';
 import 'package:graduationproject/screens/app/more_screen.dart';
@@ -20,7 +20,7 @@ class _BottomBarState extends State<BottomBar> {
   List<BnScreen> _bnscreen = <BnScreen>[
     BnScreen(title: 'Home', widget: HomeScreen()),
     BnScreen(title: 'Map', widget: MapScreen()),
-    BnScreen(title: 'AddProdlem', widget: Complaintscreen()),
+    BnScreen(title: 'AddProdlem', widget: ComplaintPage()),
     BnScreen(title: 'Setting', widget: MoreScreen()),
   ];
 
@@ -29,7 +29,6 @@ class _BottomBarState extends State<BottomBar> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-
         bottomNavigationBar: BottomNavigationBar(
             onTap: (int selectedItemIndex) {
               setState(() {
@@ -44,12 +43,17 @@ class _BottomBarState extends State<BottomBar> {
             iconSize: 25,
             type: BottomNavigationBarType.fixed,
             items: [
-
-              BottomNavigationBarItem(icon:ImageIcon(AssetImage('images/home.png')), label: 'الرئيسية'),
-              BottomNavigationBarItem(icon:ImageIcon(AssetImage('images/pin.png')), label: 'الخريطة'),
-              BottomNavigationBarItem(icon:ImageIcon(AssetImage('images/megaphone (2).png')), label: 'الشكاوي'),
-
-              BottomNavigationBarItem(icon: Icon(Icons.more_horiz), label: 'المزيد'),
+              BottomNavigationBarItem(
+                  icon: ImageIcon(AssetImage('images/home.png')),
+                  label: 'الرئيسية'),
+              BottomNavigationBarItem(
+                  icon: ImageIcon(AssetImage('images/pin.png')),
+                  label: 'الخريطة'),
+              BottomNavigationBarItem(
+                  icon: ImageIcon(AssetImage('images/megaphone (2).png')),
+                  label: 'الشكاوي'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.more_horiz), label: 'المزيد'),
             ]),
         body: _bnscreen[_currentindex].widget,
       ),
