@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/lunch_screen',
       routes: {
         '/lunch_screen': (context) => const lunch_screen(),
-        '/log_up': (context) => LoginScreen(),
+        '/log_up': (context) =>LoginScreen(),
         '/sign_in': (context) => SignInScreen(),
         '/home_screen': (context) => HomeScreen(),
         '/fatora_screen': (context) => FatoraScreen(),

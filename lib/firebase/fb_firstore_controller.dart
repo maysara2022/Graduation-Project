@@ -30,7 +30,7 @@ class FbFirstoreController with FirbaseHelper {
 
   Stream<QuerySnapshot<userData>> userDataRead(dynamic subId) async* {
     yield* _firestore
-        .collection('usersData').where('subscriptionNumber',isEqualTo: subId )
+        .collection('users').where('subscriptionNumber',isEqualTo: subId )
         .withConverter<userData>(
 
             fromFirestore: (snapshot, options) =>
@@ -43,7 +43,7 @@ class FbFirstoreController with FirbaseHelper {
 
   createUserInFirestore(String name, String phone, String idNumber,
       String email, String subId, String userId) async {
-    _firestore.collection("users").doc(userId).set({
+    _firestore.collection("users2").doc().set({
       "name": name,
       "phone": phone,
       "idNumber": idNumber,

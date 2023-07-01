@@ -32,7 +32,6 @@ class FbAuthController {
       await _auth.signOut();
 
       ///
-      String uid = userCredential.user!.uid;
       return  FirebaseResponse(
           'تم التسجيل بنجاح', true,userCredential.user!.uid);
     } on FirebaseAuthException catch (e) {
