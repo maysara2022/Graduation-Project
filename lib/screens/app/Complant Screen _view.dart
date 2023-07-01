@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/firebase/ComplaintController.dart';
 import 'package:graduationproject/models/complaintTest.dart';
@@ -61,7 +60,7 @@ class ComplaintPage extends StatelessWidget {
                 );
               } else {
                 return Center(
-                  child: CircularProgressIndicator(),
+                  child:Text('لا يوجد بيانات'),
                 );
               }
             }),

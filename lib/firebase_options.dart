@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAe5QFfzjI60WM5HenlFlDokLnt5nRNbX0',
-    appId: '1:437537788015:android:f28057a6807d555c2dbd9a',
-    messagingSenderId: '437537788015',
-    projectId: 'graduation-project-5e93b',
-    storageBucket: 'graduation-project-5e93b.appspot.com',
+    apiKey: 'AIzaSyCQj2TOqK1ekSoSJt58_xWgu5ZHNsQ3VfY',
+    appId: '1:398720332183:android:3e73287f9c222cc843d4d2',
+    messagingSenderId: '398720332183',
+    projectId: 'graduation-project-1-60807',
+    storageBucket: 'graduation-project-1-60807.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBe4wM4AZjyvxsk6MNNVoubZcoblnLUKKE',
-    appId: '1:437537788015:ios:5ad51d93d0628b172dbd9a',
-    messagingSenderId: '437537788015',
-    projectId: 'graduation-project-5e93b',
-    storageBucket: 'graduation-project-5e93b.appspot.com',
-    iosClientId: '437537788015-mkv9h5ag02n3d66m0uhc8g0hi74cobco.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBkBa9OXWiMH79UB6BpRVc46E3XqrnmgwA',
+    appId: '1:398720332183:ios:e5f96fcd1cfad8f343d4d2',
+    messagingSenderId: '398720332183',
+    projectId: 'graduation-project-1-60807',
+    storageBucket: 'graduation-project-1-60807.appspot.com',
+    iosClientId: '398720332183-rkapbtkhhnfsu118u0coiaqt51pk0qcj.apps.googleusercontent.com',
     iosBundleId: 'com.example.graduationproject',
   );
 }
