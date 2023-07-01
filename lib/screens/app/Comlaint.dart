@@ -1,10 +1,13 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/firebase/ComplaintController.dart';
+import 'package:graduationproject/models/firebase_response.dart';
 import 'package:graduationproject/prefs/shared_pref_controller.dart';
+import 'package:graduationproject/utils/context-extenssion.dart';
 import 'package:graduationproject/widgets/login%20textfiled.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -178,21 +181,27 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                         ),
                         items: [
                           DropdownMenuItem(
-                              value: 'بلوك 1',
+                              value: 'الإستقامة',
                               child: Text(
-                                'بلوك 1',
+                                'الإستقامة',
                                 style: GoogleFonts.cairo(color: Colors.black),
                               )),
                           DropdownMenuItem(
-                              value: 'بلوك 2',
+                              value: 'بركة الوز',
                               child: Text(
-                                'بلوك 2',
+                                'بركة الوز',
                                 style: GoogleFonts.cairo(color: Colors.black),
                               )),
                           DropdownMenuItem(
-                              value: 'بلوك 3',
+                              value: 'الكرامة',
                               child: Text(
-                                'بلوك 3',
+                                'الكرامة',
+                                style: GoogleFonts.cairo(color: Colors.black),
+                              )),
+                          DropdownMenuItem(
+                              value: 'السبخة',
+                              child: Text(
+                                'السبخة',
                                 style: GoogleFonts.cairo(color: Colors.black),
                               )),
                         ],
@@ -277,6 +286,8 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                           );
                           _titleController.clear();
                           _descriptionController.clear();
+                          context.shwoMassege(message: 'تم إضافة الشكوى بنجاح', error: false);
+                          Navigator.pushNamed(context, '/bottom_screen');
                         },
                         child: Text(
                           "إرسال",

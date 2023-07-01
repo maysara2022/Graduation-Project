@@ -10,11 +10,15 @@ class FbAuthController {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      return FirebaseResponse("تم تسجيل الدخول بنجاح", true,'');
+      return FirebaseResponse(
+          "تم تسجيل الدخول بنجاح", true, userCredential.user!.uid);
     } on FirebaseAuthException catch (e) {
-      return FirebaseResponse('كلمة المرور أو البريد الالكتروني غير صحيح , يرجى المحاولة', false,'');
+      return FirebaseResponse(
+          'كلمة المرور أو البريد الالكتروني غير صحيح , يرجى المحاولة',
+          false,
+          '');
     } catch (e) {
-      return  FirebaseResponse('هنالك خطأ ما يرجى المحاولة', false,'');
+      return FirebaseResponse('هنالك خطأ ما يرجى المحاولة', false, '');
     }
   }
 
@@ -32,13 +36,12 @@ class FbAuthController {
       await _auth.signOut();
 
       ///
-      String uid = userCredential.user!.uid;
-      return  FirebaseResponse(
-          'تم التسجيل بنجاح', true,userCredential.user!.uid);
+      return FirebaseResponse(
+          'تم التسجيل بنجاح', true, userCredential.user!.uid);
     } on FirebaseAuthException catch (e) {
-      return  FirebaseResponse('البيانات المدخلة غير صحيحة أو فارغة', false,'');
+      return FirebaseResponse('البيانات المدخلة غير صحيحة أو فارغة', false, '');
     } catch (e) {
-      return  FirebaseResponse('هنالك خطأ ما يرجى المحاولة', false,'');
+      return FirebaseResponse('هنالك خطأ ما يرجى المحاولة', false, '');
     }
   }
 
@@ -49,4 +52,27 @@ class FbAuthController {
   }
 
   User get user => _auth.currentUser!;
+
+  Future<void> phoneAuth() async {
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: '+970598037126',
+      verificationCompleted: (PhoneAuthCredential credential) {},
+      verificationFailed: (FirebaseAuthException e) {},
+      codeSent: (String verificationId, int? resendToken) async {
+
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
+  }
+
+  sentCode(String authCode) async {
+    try {
+      String smsCode = authCode;
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+          verificationId: authCode, smsCode: smsCode);
+      await _auth.signInWithCredential(credential);
+    } catch (ex) {
+      print("exption ccccccazaa");
+    }
+  }
 }

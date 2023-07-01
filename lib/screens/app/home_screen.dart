@@ -22,8 +22,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 int _currentPage = 0;
-bool loggedIn =
-    SharedPrefController().getValue<bool>(key: PrefKeys.loggedIn.name) ?? false;
+bool loggedIn = SharedPrefController().getValue<bool>(key: PrefKeys.loggedIn.name) ?? false;
 bool rout = loggedIn;
 PageController _pageController = PageController(
   initialPage: 0,
@@ -54,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/ComplaintPage');
+                Navigator.pushNamed(context, '/Unavilable');
               },
               icon: Icon(Icons.search),
             ),
@@ -143,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         bool loggedIn = SharedPrefController()
                                 .getValue<bool>(key: PrefKeys.loggedIn.name) ??
                             false;
-                        String rout = loggedIn ? '/fatora_screen' : '/sign_in';
+                        String rout = loggedIn ? '/fatora_screen' : '/Unavilable';
                         Navigator.pushNamed(context, rout);
                       },
                     ),
@@ -380,7 +379,7 @@ class _HomeScreenState extends State<HomeScreen> {
             actions: [
               TextButton(
                   onPressed: () async {
-                    await FbAuthController().signOut();
+
                     bool cleard = await SharedPrefController().clear();
                     if (cleard) {
                       Navigator.pushReplacementNamed(context, '/sign_in');
@@ -403,4 +402,5 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         });
   }
+
 }

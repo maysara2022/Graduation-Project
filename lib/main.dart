@@ -13,6 +13,7 @@ import 'package:graduationproject/screens/app/last_ads_screen.dart';
 import 'package:graduationproject/screens/app/last_news_screen.dart';
 import 'package:graduationproject/screens/app/lunch_screen.dart';
 import 'package:graduationproject/screens/app/moreOfMore.dart';
+import 'package:graduationproject/screens/app/unavilable.dart';
 import 'package:graduationproject/screens/auth/signIn_screen.dart';
 import 'package:graduationproject/screens/auth/signUP_screen.dart';
 import 'package:graduationproject/screens/massages/About%20Maghazi.dart';
@@ -46,8 +47,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/lunch_screen',
       routes: {
         '/lunch_screen': (context) => const lunch_screen(),
-        '/log_up': (context) => LoginScreen(),
-        '/sign_in': (context) => SignInScreen(),
+        '/log_up': (context) =>LoginScreen(),
         '/home_screen': (context) => HomeScreen(),
         '/fatora_screen': (context) => FatoraScreen(),
         '/lastNews_screen': (context) => const LastNews(),
@@ -61,6 +61,7 @@ class MyApp extends StatelessWidget {
         '/bladyeMassage': (context) => const message_Baldia(),
         '/ComplaintPage': (context) => ComplaintPage(),
         '/Complaintscreen': (context) => Complaintscreen(),
+        '/Unavilable': (context) => Unavilable(),
       },
     );
   }

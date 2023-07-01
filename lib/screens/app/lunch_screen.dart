@@ -16,7 +16,7 @@ class _lunch_screenState extends State<lunch_screen> {
     Future.delayed(Duration(seconds:3), () {
 
       bool loggedIn = SharedPrefController().getValue<bool>(key: PrefKeys.loggedIn.name)?? false;
-      String rout = loggedIn ? '/bottom_screen' :'/sign_in';
+      String rout = loggedIn ? '/bottom_screen' :'/log_up';
       Navigator.pushReplacementNamed(context, rout);
     });
     super.initState();

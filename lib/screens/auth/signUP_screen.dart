@@ -1,14 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/firebase/fb_auth_controller.dart';
-import 'package:graduationproject/firebase/fb_firstore_controller.dart';
-import 'package:graduationproject/models/firebase_response.dart';
-import 'package:graduationproject/prefs/shared_pref_controller.dart';
-import 'package:graduationproject/screens/app/fatora_screen.dart';
+import 'package:graduationproject/screens/auth/signIn_screen.dart';
 import 'package:graduationproject/utils/context-extenssion.dart';
 
 import '../../widgets/login textfiled.dart';
@@ -21,41 +16,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool _obscur = true;
-  late TextEditingController _nameEditingController;
-  late TextEditingController _emailTextController;
-  late TextEditingController _passwordTextController;
-  late TextEditingController _phoneTextController;
-  late TextEditingController _idNumberTextController;
-  late TextEditingController _subIdTextController;
-  late String sub = _subIdTextController as String;
-
-  String? _EmailError;
-  String? _nameError;
-  String? _passwordError;
-
-  @override
-  void initState() {
-    _nameEditingController = TextEditingController();
-    _emailTextController = TextEditingController();
-    _passwordTextController = TextEditingController();
-    _phoneTextController = TextEditingController();
-    _idNumberTextController = TextEditingController();
-    _subIdTextController = TextEditingController();
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _emailTextController.dispose();
-    _nameEditingController.dispose();
-    _passwordTextController.dispose();
-    _phoneTextController.dispose();
-    _idNumberTextController.dispose();
-    super.dispose();
-  }
-
+  final TextEditingController _phoneNumberController=TextEditingController();
+  String verificationFailMassage='';
+  String? idCode;
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -66,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
           elevation: 0,
           backgroundColor: Colors.transparent,
           title: Text(
-            'انشاء حساب جديد',
+            'تسجيل الدخول',
             style: GoogleFonts.cairo(
                 fontSize: 25, color: Colors.black, fontWeight: FontWeight.w600),
           ),
@@ -76,12 +39,12 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               const SizedBox(
-                height: 15,
+                height: 60,
               ),
               Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
+                  borderRadius: BorderRadius.circular(40),
                   border: Border.all(color: Colors.black12, width: .5),
                   color: Colors.white38,
                 ),
@@ -94,127 +57,95 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 10,
                       ),
                       Text(
-                        'انشاء حساب جديد',
+                        'اهلا وسهلا بك',
                         style: GoogleFonts.cairo(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      SizedBox(height: 15,),
                       Text(
-                        'تسجيل الدخول الى حسابك.',
+                        'الدخول الى حسابك.',
                         style: GoogleFonts.cairo(
                           fontSize: 16,
                         ),
                       ),
                       const SizedBox(
-                        height: 7,
+                        height: 30,
                       ),
                       TextFiledX(
-                        controll: _nameEditingController,
-                        keyboardType: TextInputType.name,
-                        title: 'الاسم كاملا',
-                        hint: 'أدخل الاسم كاملا',
-                        prefIcon: Icon(Icons.person_outline),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextFiledX(
-                        controll: _phoneTextController,
-                        keyboardType: TextInputType.phone,
-                        title: 'رقم الجوال',
-                        hint: 'أدخل رقم الجوال',
+                        controll: _phoneNumberController,
+                        keyboardType: TextInputType.text,
+                        title: 'رقم الجوال ',
+                        hint: 'أدخل رقم الجوال الخاص بك ',
                         prefIcon: Icon(Icons.phone_android),
                       ),
                       const SizedBox(
-                        height: 5,
+                        height: 40,
                       ),
-                      TextFiledX(
-                        controll: _idNumberTextController,
-                        keyboardType: TextInputType.number,
-                        title: 'رقم الهوية الخاصة بالاشتراك',
-                        hint: 'أدخل رقم الهوية الخاصة بالاشتراك',
-                        prefIcon: Icon(Icons.card_membership),
+                      SizedBox(
+                        height: 48,
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () async{
+
+                            await FirebaseAuth.instance.verifyPhoneNumber(
+                              phoneNumber: '+970599024023',
+                              verificationCompleted: (PhoneAuthCredential credential) {},
+                              verificationFailed: (FirebaseAuthException e) {
+                                setState(() {
+                                  verificationFailMassage = e.code;
+                                });
+                              },
+                              codeSent: (String verificationId, int? resendToken) {
+                                Navigator.of(context).push(PageRouteBuilder(pageBuilder: (_,__,___)=>SignInScreen(verificationId:verificationId)));
+                              },
+                              codeAutoRetrievalTimeout: (String verificationId) {},
+                            );
+
+                          },
+                          child: Text(
+                            "أرسل رمز التحقق",
+                            style: GoogleFonts.cairo(
+                                fontSize: 20, fontWeight: FontWeight.w600),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              primary: Color(0xFFb70e0e),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              )),
+                        ),
                       ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextFiledX(
-                        controll: _emailTextController,
-                        keyboardType: TextInputType.emailAddress,
-                        title: 'البريد الالكتروني',
-                        hint: 'أدخل البريد الالكتروني',
-                        prefIcon: Icon(Icons.email_outlined),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextFiledX(
-                        keyboardType: TextInputType.number,
-                        title: 'رقم اشتراك المياه',
-                        hint: 'أدخل رقم اشتراك المياه',
-                        prefIcon: Icon(Icons.credit_card),
-                        controll: _subIdTextController,
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      TextFiledX(
-                        controll: _passwordTextController,
-                        keyboardType: TextInputType.visiblePassword,
-                        title: 'كلمة المرور',
-                        hint: 'أدخل كلمة المرور',
-                        prefIcon: Icon(Icons.lock_outline),
-                        obscureText: _obscur,
-                        suffixIcon: IconButton(
-                            onPressed: () {
-                              setState(() => _obscur = !_obscur);
-                            },
-                            icon: Icon(_obscur
-                                ? Icons.visibility
-                                : Icons.visibility_off)),
-                      ),
-                      const SizedBox(
-                        height: 25,
+                      Text(
+                        verificationFailMassage,
                       ),
                       SizedBox(
                         height: 48,
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            _register();
+                            Navigator.pushNamed(context, '/bottom_screen');
                           },
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFFb70e0e),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              )),
                           child: Text(
-                            "إنشاء حساب ",
+                            "الدخول كزائر",
                             style: GoogleFonts.cairo(
-                                fontSize: 20, fontWeight: FontWeight.w600),
+                                color: Color(0xFFb70e0e),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600),
                           ),
+                          style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              primary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              side: BorderSide(color: Color(0xFFb70e0e))),
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "لديك حساب بالفعل ؟  ",
-                            style: GoogleFonts.cairo(
-                                fontSize: 17, color: Colors.black),
-                          ),
-                          TextButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/sign_in');
-                                Get.to(FatoraScreen(), arguments: [sub]);
-                              },
-                              child: Text(
-                                "تسجيل الدخول",
-                                style:
-                                    GoogleFonts.cairo(color: Color(0xFFb70e0e)),
-                              )),
-                        ],
+                      SizedBox(
+                        height: 50,
+                      ),
+                      SizedBox(
+                        height: 20,
                       )
                     ],
                   ),
@@ -227,39 +158,11 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Future<void> _performRegister() async {
-    SystemChannels.textInput.invokeListMethod('TextInput.hide');
-
-    if (_checkData()) {
-      await _register();
-    }
-  }
-
   bool _checkData() {
-    if (_emailTextController.text.isNotEmpty &&
-        _passwordTextController.text.isNotEmpty) {
+    if (_phoneNumberController.text.isNotEmpty) {
       return true;
     }
-    context.shwoMassege(message: 'أدخل البيانات المطلوبة', error: true);
+    context.shwoMassege(message: 'أدخل رقم الجوال أولا', error: true);
     return false;
-  }
-
-  Future<void> _register() async {
-    FirebaseResponse response = await FbAuthController().createAccount(
-        _emailTextController.text,
-        _passwordTextController.text,
-        _nameEditingController.text);
-    FbFirstoreController().createUserInFirestore(
-        _nameEditingController.text,
-        _phoneTextController.text,
-        _idNumberTextController.text,
-        _emailTextController.text,
-        _subIdTextController.text,
-        response.id);
-    if (response.success)
-      Navigator.pushReplacementNamed(context, '/bottom_screen');
-    context.shwoMassege(message: response.message, error: !response.success);
-    SharedPrefController()
-        .save(email: _emailTextController.text, sub: _subIdTextController.text,userId: response.id);
   }
 }

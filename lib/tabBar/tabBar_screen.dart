@@ -56,8 +56,7 @@ class MyTabBar extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.network(
-                          'https://scontent.fgza2-3.fna.fbcdn.net/v/t1.6435-9/103977358_1354866504724123_8162123730422659499_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=dbzeLcN2tYIAX-xXkSn&_nc_ht=scontent.fgza2-3.fna&oh=00_AfC8fZsW5DWIQPlla6sZAa-bw0Sv8n1I8-6KNfPm1hKr4A&oe=64872A15'),
+                      Image.asset('images/اmgles2023.jpg'),
                       SizedBox(
                         height: 20,
                       ),

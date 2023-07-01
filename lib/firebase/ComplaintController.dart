@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:graduationproject/models/complaintTest.dart';
@@ -23,7 +24,10 @@ class ComlaintController extends GetxController {
         .snapshots();
   }
 
-  Future<void> addComlaint(String title, String description, String address,
+
+
+
+    Future<void> addComlaint(String title, String description, String address,
       String type, XFile imageFile, String userId) async {
     String imageName = DateTime.now().toString() + '.png';
     Reference ref = FirebaseStorage.instance.ref().child(imageName);
@@ -31,14 +35,14 @@ class ComlaintController extends GetxController {
     TaskSnapshot taskSnapshot = await uploadTask;
     String imageUrl = await taskSnapshot.ref.getDownloadURL();
 
-    _firestore.collection("complaints").doc().set({
+    _firestore.collection("complaints").doc(userId).set({
       'title': title,
       'description': description,
       'type': type,
       'userId': userId,
       'address': address,
       'imageUrl': imageUrl,
-      'status': 'to do',
+      'status': 'قيد الدراسة',
       'time': DateTime.now(),
     });
   }

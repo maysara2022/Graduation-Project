@@ -18,9 +18,9 @@ class SharedPrefController {
 
   Future<void> save({required String email, String? sub,String? userId}) async {
     await _sharedPrefereces.setBool(PrefKeys.loggedIn.name, true);
+    await _sharedPrefereces.setString(PrefKeys.userId.name, userId!);
     await _sharedPrefereces.setString(PrefKeys.email.name, email);
     await _sharedPrefereces.setString(PrefKeys.sub.name, sub!);
-    await _sharedPrefereces.setString(PrefKeys.userId.name, userId!);
   }
   bool get loggedIn =>_sharedPrefereces.getBool(PrefKeys.loggedIn.name)??false;
 
