@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EmergencyItems extends StatelessWidget {
@@ -18,7 +19,7 @@ class EmergencyItems extends StatelessWidget {
             Text(
               title,
               style: GoogleFonts.cairo(
-                  fontSize: 18, fontWeight: FontWeight.w600),
+                  fontSize: 18.sp, fontWeight: FontWeight.w600),
             ),
           ],
         ),
@@ -29,15 +30,15 @@ class EmergencyItems extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10,vertical:20),
             child: Text(
-             det,
-              style: GoogleFonts.cairo(fontSize: 14),
+              det,
+              style: GoogleFonts.cairo(fontSize: 14.sp),
             ),
           ),
           width: double.infinity,
           height: 150,
           decoration: BoxDecoration(
-            border: Border.all(width: 2, color: Colors.grey.shade300),
-            borderRadius: BorderRadiusDirectional.circular(10),
+            border: Border.all(width: 2.w, color: Colors.grey.shade300),
+            borderRadius: BorderRadiusDirectional.circular(10.r),
           ),
         ),
       ),

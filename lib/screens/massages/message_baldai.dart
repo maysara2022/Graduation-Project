@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class message_Baldia extends StatelessWidget {
@@ -30,7 +31,7 @@ class message_Baldia extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
 
                 Text(
@@ -41,10 +42,10 @@ class message_Baldia extends StatelessWidget {
                 ),
                 Center(
                   child: Text(
-                        'بلدية المغازي',
+                    'بلدية المغازي',
                     style: GoogleFonts.cairo(
                       fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                      fontSize: 20.sp,
                     ),
                   ),
                 ),

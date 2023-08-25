@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/firebase/fb_auth_controller.dart';
 import 'package:graduationproject/screens/auth/signIn_screen.dart';
@@ -9,7 +10,7 @@ import 'package:graduationproject/utils/context-extenssion.dart';
 import '../../widgets/login textfiled.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -31,47 +32,47 @@ class _LoginScreenState extends State<LoginScreen> {
           title: Text(
             'تسجيل الدخول',
             style: GoogleFonts.cairo(
-                fontSize: 25, color: Colors.black, fontWeight: FontWeight.w600),
+                fontSize: 25.sp, color: Colors.black, fontWeight: FontWeight.w600),
           ),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(
-                height: 60,
+              SizedBox(
+                height: 60.h,
               ),
               Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40),
-                  border: Border.all(color: Colors.black12, width: .5),
+                  borderRadius: BorderRadius.circular(40.r),
+                  border: Border.all(color: Colors.black12, width: .5.w),
                   color: Colors.white38,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10).w,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: 10.h,
                       ),
                       Text(
                         'اهلا وسهلا بك',
                         style: GoogleFonts.cairo(
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 15,),
+                      SizedBox(height: 15.h,),
                       Text(
                         'الدخول الى حسابك.',
                         style: GoogleFonts.cairo(
-                          fontSize: 16,
+                          fontSize: 16.sp,
                         ),
                       ),
-                      const SizedBox(
-                        height: 30,
+                      SizedBox(
+                        height: 30.h,
                       ),
                       TextFiledX(
                         controll: _phoneNumberController,
@@ -80,12 +81,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         hint: 'أدخل رقم الجوال الخاص بك ',
                         prefIcon: Icon(Icons.phone_android),
                       ),
-                      const SizedBox(
-                        height: 40,
+                      SizedBox(
+                        height: 40.h,
                       ),
                       SizedBox(
-                        height: 48,
-                        width: double.infinity,
+                        height: 48.h,
+                        width: double.infinity.w,
                         child: ElevatedButton(
                           onPressed: () async{
 
@@ -112,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: ElevatedButton.styleFrom(
                               primary: Color(0xFFb70e0e),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(10.r),
                               )),
                         ),
                       ),
@@ -120,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         verificationFailMassage,
                       ),
                       SizedBox(
-                        height: 48,
+                        height: 48.h,
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
@@ -130,22 +131,22 @@ class _LoginScreenState extends State<LoginScreen> {
                             "الدخول كزائر",
                             style: GoogleFonts.cairo(
                                 color: Color(0xFFb70e0e),
-                                fontSize: 20,
+                                fontSize: 20.sp,
                                 fontWeight: FontWeight.w600),
                           ),
                           style: ElevatedButton.styleFrom(
                               elevation: 0,
                               primary: Colors.white,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
+                                  borderRadius: BorderRadius.circular(10.r)),
                               side: BorderSide(color: Color(0xFFb70e0e))),
                         ),
                       ),
                       SizedBox(
-                        height: 50,
+                        height: 50.h,
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 20.h,
                       )
                     ],
                   ),

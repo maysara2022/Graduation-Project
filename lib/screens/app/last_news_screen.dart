@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/firebase/fb_firstore_controller.dart';
 import 'package:graduationproject/models/expense.dart';
@@ -31,7 +32,7 @@ class _LastNewsState extends State<LastNews> {
           backgroundColor: Colors.transparent,
           title: Text(
             "أخر الأخبار",
-            style: GoogleFonts.cairo(fontSize: 22, color: Colors.black),
+            style: GoogleFonts.cairo(fontSize: 22.sp, color: Colors.black),
           ),
         ),
         body: StreamBuilder<QuerySnapshot<Expense>>(
@@ -45,79 +46,79 @@ class _LastNewsState extends State<LastNews> {
                 return ListView.builder
                   (itemCount: snapshot.data!.docs.length,
                     itemBuilder:
-                    (context, Index) {
+                        (context, Index) {
 
-                  DateTime t =
-                  snapshot.data!.docs[Index].data().time!.toDate();
+                      DateTime t =
+                      snapshot.data!.docs[Index].data().time!.toDate();
 
-                  var output1 = intl.DateFormat('dd/MM/2023').format(t);
+                      var output1 = intl.DateFormat('dd/MM/2023').format(t);
 
-                  return Column(children: [
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Container(
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                      clipBehavior: Clip.antiAlias,
-                      height: 150,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Image.network(
-                        fit: BoxFit.cover,
-                        snapshot.data!.docs[Index].data().imageUrl.toString(),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: Row(children: [
-                        Icon(
-                          Icons.access_time_sharp,
-                          color: Colors.black,
-                          size: 20,
-                        ),
+                      return Column(children: [
                         SizedBox(
-                          width: 5,
+                          height: 30.h,
                         ),
-                        Text(
-                          overflow: TextOverflow.ellipsis,
-                          output1,
-                          style: GoogleFonts.changa(
-                            color: Colors.redAccent,
+                        Container(
+                          margin:
+                          EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                          clipBehavior: Clip.antiAlias,
+                          height: 150,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.r),
                           ),
-                        )
-                      ]),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            maxLines: 2,
-                            snapshot.data!.docs[Index].data().title.toString(),
-                            style: GoogleFonts.cairo(fontSize: 18,fontWeight: FontWeight.w600),
+                          child: Image.network(
+                            fit: BoxFit.cover,
+                            snapshot.data!.docs[Index].data().imageUrl.toString(),
                           ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            maxLines: 2,
-                            snapshot.data!.docs[Index].data().content.toString(),
-                            style: GoogleFonts.cairo(fontSize: 14),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: Row(children: [
+                            Icon(
+                              Icons.access_time_sharp,
+                              color: Colors.black,
+                              size: 20,
+                            ),
+                            SizedBox(
+                              width: 5.w,
+                            ),
+                            Text(
+                              overflow: TextOverflow.ellipsis,
+                              output1,
+                              style: GoogleFonts.changa(
+                                color: Colors.redAccent,
+                              ),
+                            )
+                          ]),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                maxLines: 2,
+                                snapshot.data!.docs[Index].data().title.toString(),
+                                style: GoogleFonts.cairo(fontSize: 18.sp,fontWeight: FontWeight.w600),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
-                  ]);
-                });
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                maxLines: 2,
+                                snapshot.data!.docs[Index].data().content.toString(),
+                                style: GoogleFonts.cairo(fontSize: 14.sp),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]);
+                    });
               } else {
                 return Center(
                   child: Text(

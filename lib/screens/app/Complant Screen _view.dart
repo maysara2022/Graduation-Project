@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/firebase/ComplaintController.dart';
 import 'package:graduationproject/models/complaintTest.dart';
@@ -9,7 +10,7 @@ class ComplaintPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String userId =
-        SharedPrefController().getValue<String>(key: PrefKeys.userId.name)!;
+    SharedPrefController().getValue<String>(key: PrefKeys.userId.name)!;
 
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -42,26 +43,26 @@ class ComplaintPage extends StatelessWidget {
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, Index) {
                     return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding:  EdgeInsets.all(8.0).r,
                       child: Card(
                         elevation: 0,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(15).r,
                             side: BorderSide(
                               color: Colors.grey.shade300,
-                              width: 1,
+                              width: 1.w,
                             )),
                         child: Column(
                           children: [
                             SizedBox(
-                              height: 250,
+                              height: 250.h,
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(15).r,
                                 child: Image.network(snapshot.data!.docs[Index]
                                     .data()
                                     .imageUrl
                                     .toString(),
-                                fit: BoxFit.cover,),
+                                  fit: BoxFit.cover,),
                               ),
                             ),
                             Padding(
@@ -72,18 +73,17 @@ class ComplaintPage extends StatelessWidget {
                                   Text(
                                     'حالة الشكوى :',
                                     style: GoogleFonts.cairo(
-                                      fontSize: 16,
-
+                                      fontSize: 16.sp,
                                     ),
                                   ),
                                   Spacer(),
                                   Container(
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
+                                        borderRadius: BorderRadius.circular(15).r,
                                         color: Colors.red.shade400,
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(4.0).r,
                                         child: Text(snapshot.data!.docs[Index]
                                             .data()
                                             .status
@@ -95,16 +95,16 @@ class ComplaintPage extends StatelessWidget {
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 30),
+                              const EdgeInsets.symmetric(horizontal: 30).w,
                               child: Row(
                                 children: [
                                   Text(
                                     'نوع الشكوى :',
-                                    style: GoogleFonts.cairo(fontSize: 16,),
+                                    style: GoogleFonts.cairo(fontSize: 16.sp,),
                                   ),
                                   Spacer(),
                                   Padding(
-                                    padding: const EdgeInsets.all(4.0),
+                                    padding: const EdgeInsets.all(4.0).w,
                                     child: Text(snapshot.data!.docs[Index]
                                         .data()
                                         .type
@@ -116,16 +116,16 @@ class ComplaintPage extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 30, vertical: 6),
+                                  horizontal: 30, vertical: 6).w,
                               child: Row(
                                 children: [
                                   Text(
                                     'منطقة الشكوى :',
-                                    style: GoogleFonts.cairo(fontSize: 16),
+                                    style: GoogleFonts.cairo(fontSize: 16.sp),
                                   ),
                                   Spacer(),
                                   Padding(
-                                    padding: const EdgeInsets.all(4.0),
+                                    padding: const EdgeInsets.all(4.0).w,
                                     child: Text(snapshot.data!.docs[Index]
                                         .data()
                                         .address
@@ -151,8 +151,8 @@ class ComplaintPage extends StatelessWidget {
               }
             }),
         floatingActionButton: SizedBox(
-          width: 70,
-          height: 70,
+          width: 70.w,
+          height: 70.h,
           child: FloatingActionButton(
             onPressed: () {
               Navigator.pushNamed(context, '/Complaintscreen');

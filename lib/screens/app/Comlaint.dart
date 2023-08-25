@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/firebase/ComplaintController.dart';
 import 'package:graduationproject/models/firebase_response.dart';
@@ -26,7 +27,7 @@ final _typeController = TextEditingController();
 XFile? _imageFile;
 String? addressselectedValue;
 String userId =
-    SharedPrefController().getValue<String>(key: PrefKeys.userId.name)!;
+SharedPrefController().getValue<String>(key: PrefKeys.userId.name)!;
 
 String? typeselectedValue;
 
@@ -59,12 +60,12 @@ class _ComplaintScreenState extends State<Complaintscreen> {
             ),
             body: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 15).w,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 15,
+                      height: 15.h,
                     ),
                     TextFiledX(
                       title: 'عنوان الشكوى',
@@ -72,13 +73,13 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                       keyboardType: TextInputType.text,
                       controll: _titleController,
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: 10.h,
                     ),
                     Text(
                       'تفاصيل الشكوى',
                       style: GoogleFonts.cairo(
-                          fontSize: 15, fontWeight: FontWeight.w500),
+                          fontSize: 15.sp, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(
                       height: 8,
@@ -90,13 +91,13 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                       decoration: InputDecoration(
                         hintText: 'أدخل نص الشكوى هنا...',
                         hintStyle:
-                            GoogleFonts.cairo(fontSize: 14, color: Colors.grey),
+                        GoogleFonts.cairo(fontSize: 14.sp, color: Colors.grey),
                         enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(15).w,
                             borderSide:
-                                BorderSide(width: .4, color: Colors.grey)),
+                            BorderSide(width: .4.w, color: Colors.grey)),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(15).w,
                         ),
                       ),
                     ),
@@ -106,23 +107,23 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                         Text(
                           'نوع الشكوى',
                           style: GoogleFonts.cairo(
-                              fontSize: 15, fontWeight: FontWeight.w500),
+                              fontSize: 15.sp, fontWeight: FontWeight.w500),
                         ),
                         SizedBox(
-                          height: 8,
+                          height: 8.h,
                         ),
                         SizedBox(
-                          height: 55,
+                          height: 55.h,
                           child: DropdownButtonFormField(
                             hint: Text('اختر نوع الشكوى'),
-                            style: GoogleFonts.cairo(height: 1),
+                            style: GoogleFonts.cairo(height: 1.h),
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15),
+                                  borderRadius: BorderRadius.circular(15).r,
                                   borderSide: BorderSide(
-                                      width: .4, color: Colors.grey)),
+                                      width: .4.w, color: Colors.grey)),
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(15).r,
                               ),
                             ),
                             items: [
@@ -160,23 +161,23 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                     Text(
                       'المنطقة',
                       style: GoogleFonts.cairo(
-                          fontSize: 15, fontWeight: FontWeight.w500),
+                          fontSize: 15.sp, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(
-                      height: 8,
+                      height: 8.h,
                     ),
                     SizedBox(
-                      height: 55,
+                      height: 55.h,
                       child: DropdownButtonFormField(
                         hint: Text('اختر منطقة الشكوى'),
-                        style: GoogleFonts.cairo(height: 1),
+                        style: GoogleFonts.cairo(height: 1.h),
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(15).r,
                               borderSide:
-                                  BorderSide(width: .4, color: Colors.grey)),
+                              BorderSide(width: .4.w, color: Colors.grey)),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(15).r,
                           ),
                         ),
                         items: [
@@ -213,15 +214,15 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 8,
+                      height: 8.h,
                     ),
                     Text(
                       'رفع الصور',
                       style: GoogleFonts.cairo(
-                          fontSize: 15, fontWeight: FontWeight.w500),
+                          fontSize: 15.sp, fontWeight: FontWeight.w500),
                     ),
                     SizedBox(
-                      height: 8,
+                      height: 8.h,
                     ),
                     GestureDetector(
                       onTap: () async {
@@ -235,10 +236,10 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                       },
                       child: Container(
                         width: double.infinity,
-                        height: 150,
+                        height: 150.h,
                         decoration: BoxDecoration(
                           color: Colors.grey.shade200,
-                          borderRadius: BorderRadiusDirectional.circular(20),
+                          borderRadius: BorderRadiusDirectional.circular(20.r),
                         ),
                         child: Center(
                           child: SingleChildScrollView(
@@ -269,10 +270,10 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     ),
                     SizedBox(
-                      height: 48,
+                      height: 48.h,
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () async {
@@ -297,12 +298,12 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                         style: ElevatedButton.styleFrom(
                             primary: Color(0xFFb70e0e),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(10.r),
                             )),
                       ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 20.h,
                     ),
                   ],
                 ),

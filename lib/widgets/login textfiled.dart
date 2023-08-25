@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextFiledX extends StatelessWidget {
   const TextFiledX(
       {Key? key,
-      required this.title,
-      required this.hint,
-      this.prefIcon,
-      this.suffixIcon = null,
-      required this.keyboardType,
-      this.obscureText = false,
-      required this.controll})
+        required this.title,
+        required this.hint,
+        this.prefIcon,
+        this.suffixIcon = null,
+        required this.keyboardType,
+        this.obscureText = false,
+        required this.controll})
       : super(key: key);
 
   final String title;
@@ -31,12 +32,12 @@ class TextFiledX extends StatelessWidget {
           style: GoogleFonts.cairo(fontSize: 15, fontWeight: FontWeight.w500),
         ),
         SizedBox(
-          height: 8,
+          height: 8.h,
         ),
         SizedBox(
-          height: 48,
+          height: 48.h,
           child: TextField(
-            style: TextStyle(fontSize: 12),
+            style: TextStyle(fontSize: 12.sp),
             controller: controll,
             obscureText: obscureText!,
             keyboardType: keyboardType,
@@ -44,13 +45,13 @@ class TextFiledX extends StatelessWidget {
             decoration: InputDecoration(
               suffixIcon: suffixIcon,
               hintText: hint,
-              hintStyle: GoogleFonts.cairo(fontSize: 14, color: Colors.grey),
+              hintStyle: GoogleFonts.cairo(fontSize: 14.sp, color: Colors.grey),
               prefixIcon: prefIcon,
               enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide(width: .4, color: Colors.grey)),
+                  borderRadius: BorderRadius.circular(15.r),
+                  borderSide: BorderSide(width: .4.w, color: Colors.grey)),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(15.r),
               ),
             ),
           ),

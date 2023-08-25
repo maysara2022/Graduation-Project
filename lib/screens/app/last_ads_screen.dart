@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/firebase/fb_firstore_controller.dart';
 import 'package:graduationproject/models/expense.dart';
@@ -32,7 +33,7 @@ class _LastAds extends State<LastAds> {
           backgroundColor: Colors.transparent,
           title: Text(
             "أخر الإعلانات",
-            style: GoogleFonts.cairo(fontSize: 22, color: Colors.black),
+            style: GoogleFonts.cairo(fontSize: 22.sp, color: Colors.black),
           ),
         ),
         body: StreamBuilder<QuerySnapshot<ModelAds>>(
@@ -56,10 +57,10 @@ class _LastAds extends State<LastAds> {
 
                       return Column(children: [
                         SizedBox(
-                          height: 30,
+                          height: 30.h,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10).w,
                           child: Row(children: [
                             Icon(
                               Icons.access_time_sharp,
@@ -67,7 +68,7 @@ class _LastAds extends State<LastAds> {
                               size: 20,
                             ),
                             SizedBox(
-                              width: 5,
+                              width: 5.w,
                             ),
                             Text(
                               overflow: TextOverflow.ellipsis,
@@ -92,7 +93,7 @@ class _LastAds extends State<LastAds> {
                               Text(
                                 maxLines: 2,
                                 snapshot.data!.docs[Index].data().title.toString(),
-                                style: GoogleFonts.cairo(fontSize: 18,fontWeight: FontWeight.w600),
+                                style: GoogleFonts.cairo(fontSize: 18.sp,fontWeight: FontWeight.w600),
                               ),
                             ],
                           ),
@@ -105,7 +106,7 @@ class _LastAds extends State<LastAds> {
                               Text(
                                 maxLines: 2,
                                 snapshot.data!.docs[Index].data().content.toString(),
-                                style: GoogleFonts.cairo(fontSize: 14),
+                                style: GoogleFonts.cairo(fontSize: 14.sp),
                               ),
                             ],
                           ),

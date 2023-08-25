@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
@@ -13,14 +14,14 @@ class Unavilable extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          SizedBox(
-              height: 200,
-              width: 200,
-              child: Image.asset('images/happy-cat-26.gif')),
-            SizedBox(height: 100,),
-            Text('عُذراً ,  قم بتسجيل الدخول أولاً',style: GoogleFonts.cairo(fontSize: 22,fontWeight: FontWeight.bold),),
             SizedBox(
-              height: 50,
+                height: 200.h,
+                width: 200.w,
+                child: Image.asset('images/happy-cat-26.gif')),
+            SizedBox(height: 100,),
+            Text('عُذراً ,  قم بتسجيل الدخول أولاً',style: GoogleFonts.cairo(fontSize: 22.sp,fontWeight: FontWeight.bold),),
+            SizedBox(
+              height: 50.h,
             ),
             Align
               (
@@ -42,6 +43,6 @@ class Unavilable extends StatelessWidget {
         ),
       ),
     );
-    
+
   }
 }

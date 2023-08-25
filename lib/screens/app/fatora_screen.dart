@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/firebase/fb_firstore_controller.dart';
 import 'package:graduationproject/models/usersData.dart';
@@ -15,7 +16,7 @@ class FatoraScreen extends StatefulWidget {
 }
 
 String maysara =
-    SharedPrefController().getValue<String>(key: PrefKeys.sub.name)!;
+SharedPrefController().getValue<String>(key: PrefKeys.sub.name)!;
 
 class _FatoraScreenState extends State<FatoraScreen> {
   @override
@@ -62,52 +63,52 @@ class _FatoraScreenState extends State<FatoraScreen> {
                       children: [
                         Container(
                           width: double.infinity,
-                          height: 140,
+                          height: 140.h,
                           decoration: BoxDecoration(
                               color: Color(0xFF820000),
                               borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(50),
-                                  bottomRight: Radius.circular(50))),
+                                  bottomLeft: Radius.circular(50).r,
+                                  bottomRight: Radius.circular(50).r)),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 20),
                           child: Center(
                               child: Text(
-                            'قيمة متأخراتك لدى البلدية :',
-                            style: GoogleFonts.cairo(
-                                color: Colors.white,
-                                fontSize: 22,
-                                fontWeight: FontWeight.w600),
-                          )),
+                                'قيمة متأخراتك لدى البلدية :',
+                                style: GoogleFonts.cairo(
+                                    color: Colors.white,
+                                    fontSize: 22.sp,
+                                    fontWeight: FontWeight.w600),
+                              )),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 65),
                           child: Center(
                               child: Text(
-                            snapshot.data!.docs[0]
-                                .data()
-                                .arrearsValue
-                                .toString()+"  شيكل",
-                            style: GoogleFonts.cairo(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600),
-                          )),
+                                snapshot.data!.docs[0]
+                                    .data()
+                                    .arrearsValue
+                                    .toString()+"  شيكل",
+                                style: GoogleFonts.cairo(
+                                    color: Colors.white,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w600),
+                              )),
                         )
                       ],
                     ),
                     SizedBox(
-                      height: 40,
+                      height: 40.h,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 14),
+                      padding: const EdgeInsets.symmetric(horizontal: 14).w,
                       child: ListTile(
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(10).r,
                             side: BorderSide(color: Colors.black12)),
                         selectedTileColor: Colors.cyan,
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+                        EdgeInsets.symmetric(vertical: 6, horizontal: 10),
                         leading: ImageIcon(
                           AssetImage('images/dial-pad.png'),
                           color: Colors.black,
@@ -116,7 +117,7 @@ class _FatoraScreenState extends State<FatoraScreen> {
                         title: Text(
                           'رقم الإشتراك',
                           style: GoogleFonts.cairo(
-                              fontSize: 15, color: Colors.black),
+                              fontSize: 15.sp, color: Colors.black),
                         ),
                         subtitle: Text(
                           snapshot.data!.docs[0]
@@ -124,7 +125,7 @@ class _FatoraScreenState extends State<FatoraScreen> {
                               .subscriptionNumber
                               .toString(),
                           style: GoogleFonts.cairo(
-                              fontSize: 20, color: Colors.black),
+                              fontSize: 20.sp, color: Colors.black),
                         ),
                         trailing: Icon(
                           Icons.numbers,
@@ -134,39 +135,39 @@ class _FatoraScreenState extends State<FatoraScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 15.h,
                     ),
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0).w,
                       child: Container(
                         width: double.infinity,
-                        height: 60,
+                        height: 60.h,
                         decoration: BoxDecoration(
                           border:
-                              Border.all(width: 2, color: Colors.grey.shade300),
-                          borderRadius: BorderRadiusDirectional.circular(10),
+                          Border.all(width: 2.w, color: Colors.grey.shade300),
+                          borderRadius: BorderRadiusDirectional.circular(10.r),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0).w,
                           child: Row(
                             children: [
                               Icon(Icons.numbers),
                               SizedBox(
-                                width: 10,
+                                width: 10.w,
                               ),
                               Text(
                                 'قيمة الفاتورة الحالية : ',
-                                style: GoogleFonts.cairo(fontSize: 20),
+                                style: GoogleFonts.cairo(fontSize: 20.sp),
                               ),
                               Spacer(),
                               Text(
                                 snapshot.data!.docs[0]
-                                        .data()
-                                        .currentBillValue
-                                        .toString() +
+                                    .data()
+                                    .currentBillValue
+                                    .toString() +
                                     "  شيكل",
                                 style: GoogleFonts.cairo(
-                                    fontSize: 15, fontWeight: FontWeight.w600),
+                                    fontSize: 15.sp, fontWeight: FontWeight.w600),
                               ),
                             ],
                           ),
@@ -177,32 +178,32 @@ class _FatoraScreenState extends State<FatoraScreen> {
                       padding: EdgeInsets.all(8.0),
                       child: Container(
                         width: double.infinity,
-                        height: 60,
+                        height: 60.h,
                         decoration: BoxDecoration(
                           border:
-                              Border.all(width: 2, color: Colors.grey.shade300),
-                          borderRadius: BorderRadiusDirectional.circular(10),
+                          Border.all(width: 2.w, color: Colors.grey.shade300),
+                          borderRadius: BorderRadiusDirectional.circular(10.r),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0).w,
                           child: Row(
                             children: [
                               Icon(Icons.numbers),
                               SizedBox(
-                                width: 10,
+                                width: 10.w,
                               ),
                               Text(
                                 'فاتورة الشهر السابق :',
-                                style: GoogleFonts.cairo(fontSize: 20),
+                                style: GoogleFonts.cairo(fontSize: 20.sp),
                               ),
                               Spacer(),
                               Text(
                                 snapshot.data!.docs[0]
-                                        .data()
-                                        .month1
-                                        .toString() +
+                                    .data()
+                                    .month1
+                                    .toString() +
                                     "  شيكل",
-                                style: GoogleFonts.cairo(fontSize: 15),
+                                style: GoogleFonts.cairo(fontSize: 15.sp),
                               ),
                             ],
                           ),
@@ -210,35 +211,35 @@ class _FatoraScreenState extends State<FatoraScreen> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0).r,
                       child: Container(
                         width: double.infinity,
-                        height: 60,
+                        height: 60.h,
                         decoration: BoxDecoration(
                           border:
-                              Border.all(width: 2, color: Colors.grey.shade300),
-                          borderRadius: BorderRadiusDirectional.circular(10),
+                          Border.all(width: 2.w, color: Colors.grey.shade300),
+                          borderRadius: BorderRadiusDirectional.circular(10.r),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0).w,
                           child: Row(
                             children: [
                               Icon(Icons.numbers),
                               SizedBox(
-                                width: 10,
+                                width: 10.w,
                               ),
                               Text(
                                 ' الفاتورة الشهر الأسبق  :',
-                                style: GoogleFonts.cairo(fontSize: 20),
+                                style: GoogleFonts.cairo(fontSize: 20.sp),
                               ),
                               Spacer(),
                               Text(
                                 snapshot.data!.docs[0]
-                                        .data()
-                                        .month2
-                                        .toString() +
+                                    .data()
+                                    .month2
+                                    .toString() +
                                     "  شيكل",
-                                style: GoogleFonts.cairo(fontSize: 15),
+                                style: GoogleFonts.cairo(fontSize: 15.sp),
                               ),
                             ],
                           ),
@@ -246,17 +247,17 @@ class _FatoraScreenState extends State<FatoraScreen> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0).r,
                       child: Container(
                         width: double.infinity,
-                        height: 60,
+                        height: 60.h,
                         decoration: BoxDecoration(
                           border:
-                              Border.all(width: 2, color: Colors.grey.shade300),
-                          borderRadius: BorderRadiusDirectional.circular(10),
+                          Border.all(width: 2.w, color: Colors.grey.shade300),
+                          borderRadius: BorderRadiusDirectional.circular(10.r),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0).r,
                           child: Row(
                             children: [
                               Icon(
@@ -264,22 +265,22 @@ class _FatoraScreenState extends State<FatoraScreen> {
                                 size: 28,
                               ),
                               SizedBox(
-                                width: 10,
+                                width: 10.w,
                               ),
                               Text(
                                 'إجمالي الفواتير :',
                                 style: GoogleFonts.cairo(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    fontSize: 20.sp, fontWeight: FontWeight.bold),
                               ),
                               Spacer(),
                               Text(
                                 snapshot.data!.docs[0]
-                                        .data()
-                                        .arrearsValue
-                                        .toString() +
+                                    .data()
+                                    .arrearsValue
+                                    .toString() +
                                     "  شيكل",
                                 style: GoogleFonts.cairo(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
+                                    fontSize: 15.sp, fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),

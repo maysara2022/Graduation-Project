@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AboutMaghazi extends StatelessWidget {
@@ -26,33 +27,33 @@ class AboutMaghazi extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20).w,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 5,
+                  height: 5.h,
                 ),
                 Text(
                   'نبذة عن مخيم المغازي',
                   style: GoogleFonts.cairo(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 20.sp,
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Text(
                   'الاسم والنشأة:',
                   style: GoogleFonts.cairo(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     color: Color(0xFF820000),
                   ),
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 5.h,
                 ),
                 Text(
                   'مخيم  المغازي  يقع  على  جزء  من  أنقاض  قرية  داثن  القديمة  أو ” الدميثة”  حيث  ذكرها  ياقوت  الحموي  بأنها  قرية  من  قرى  غزة  هزم  فيها  الكفار'
@@ -63,18 +64,18 @@ class AboutMaghazi extends StatelessWidget {
                   style: GoogleFonts.cairo(fontWeight: FontWeight.w400),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Text(
                   'نشأة مخيم المغازي:',
                   style: GoogleFonts.cairo(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     color: Color(0xFF820000),
                   ),
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 5.h,
                 ),
                 Text(
                   'استقبل القطاع جزءاً كبيراً من النازحين “اللاجئين” الذين توزعوا في مختلف مدن وقرى القطاع، في المساجد والمدارس والكنائس، أو لدى المعارف'
@@ -94,23 +95,23 @@ class AboutMaghazi extends StatelessWidget {
                 ),
 
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Text(
                   'موقع المغازي:',
                   style: GoogleFonts.cairo(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     color: Color(0xFF820000),
                   ),
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 5.h,
                 ),
                 Text(
                   'يقع  مخيم  المغازي  في  محافظة  الوسطى  وهي  من  محافظات  قطاع  غزة  وهو  أحد  مخيمات اللاجئين  الثمانية  الموجودة في محافظات  قطاع '
                       'غزة. ويبعد  عن  مدينة  غزة  جنوباً 14كم  ويقع  على  الجانب  الشرقي  للشارع  الرئيسي  لقطاع  غزة وهو  شارع  صلاح  الدين.'
-                      ,
+                  ,
                   style: GoogleFonts.cairo(fontWeight: FontWeight.w400),
                 ),
 
@@ -125,18 +126,18 @@ class AboutMaghazi extends StatelessWidget {
                 ),
 
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Text(
                   'المساحة:',
                   style: GoogleFonts.cairo(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     color: Color(0xFF820000),
                   ),
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 5.h,
                 ),
                 Text(
                   'بلغت  مساحة  مخيم  المغازي في أوائل  إنشائه  بعد  عام  1948  (295  دونم)  واستمر  التزايد السكاني  إلى  ما  قبل  عام  1996  ،  (1800  دونم)  ،  ومع '
@@ -148,18 +149,18 @@ class AboutMaghazi extends StatelessWidget {
                 ),
 
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Text(
                   'الحدود:',
                   style: GoogleFonts.cairo(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     color: Color(0xFF820000),
                   ),
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 5.h,
                 ),
                 Text(
                   'يحد  مخيم  المغازي  من  الشمال  مخيم  البريج  بحدود  يقدر  طولها  (  2200متر)  ويحده  من الجنوب  قرية  المصدر  بحدود  (  2200  متر)  ومن  الغرب  قرية '
@@ -170,18 +171,18 @@ class AboutMaghazi extends StatelessWidget {
                 ),
 
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 Text(
                   'السطح:',
                   style: GoogleFonts.cairo(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 20.sp,
                     color: Color(0xFF820000),
                   ),
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 5.h,
                 ),
                 Text(
                   'أرض  مخيم  المغازي  هي  جزء  من  أراضي  قطاع  غزة  التي  تتميز  بسهولتها  وقلت  ارتفاعاتها  وهي جزء  من  السهل  الساحلي  الفلسطيني  الكبير  ومع '

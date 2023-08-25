@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/prefs/shared_pref_controller.dart';
 
@@ -11,7 +12,6 @@ class MoreOFMore extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-
           elevation: 0,
           backgroundColor: Colors.transparent,
           title: Text(
@@ -35,7 +35,7 @@ class MoreOFMore extends StatelessWidget {
               thickness: 0.5,
             ),
             SizedBox(
-              height: 20,
+              height: 20.h,
             ),
             ListTile(
               onTap: () {
@@ -43,7 +43,7 @@ class MoreOFMore extends StatelessWidget {
               },
               title: Text('كلمة رئيس البلدية',
                   style: GoogleFonts.cairo(
-                      fontWeight: FontWeight.bold, fontSize: 13)),
+                      fontWeight: FontWeight.bold, fontSize: 13.sp)),
               trailing: Icon(
                 Icons.keyboard_arrow_left,
                 color: Colors.black38,
@@ -51,11 +51,11 @@ class MoreOFMore extends StatelessWidget {
               leading: Container(
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadiusDirectional.circular(10),
+                  borderRadius: BorderRadiusDirectional.circular(10.r),
                   color: Colors.grey.shade200,
                 ),
-                height: 30,
-                width: 30,
+                height: 30.h,
+                width: 30.w,
                 child: Icon(Icons.message_outlined, color: Colors.black),
               ),
             ),
@@ -70,7 +70,7 @@ class MoreOFMore extends StatelessWidget {
               },
               title: Text('عن المخيم',
                   style: GoogleFonts.cairo(
-                      fontWeight: FontWeight.bold, fontSize: 13)),
+                      fontWeight: FontWeight.bold, fontSize: 13.sp)),
               trailing: Icon(
                 Icons.keyboard_arrow_left,
                 color: Colors.black38,
@@ -78,11 +78,11 @@ class MoreOFMore extends StatelessWidget {
               leading: Container(
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadiusDirectional.circular(10),
+                  borderRadius: BorderRadiusDirectional.circular(10.r),
                   color: Colors.grey.shade200,
                 ),
-                height: 35,
-                width: 35,
+                height: 35.h,
+                width: 35.w,
                 child:Icon(
                   Icons.info_outline,
                   color: Colors.black,
@@ -100,7 +100,7 @@ class MoreOFMore extends StatelessWidget {
               },
               title: Text('رسالة البلدية',
                   style: GoogleFonts.cairo(
-                      fontWeight: FontWeight.bold, fontSize: 13)),
+                      fontWeight: FontWeight.bold, fontSize: 13.sp)),
               trailing: Icon(
                 Icons.keyboard_arrow_left,
                 color: Colors.black38,
@@ -108,11 +108,11 @@ class MoreOFMore extends StatelessWidget {
               leading: Container(
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadiusDirectional.circular(10),
+                  borderRadius: BorderRadiusDirectional.circular(10.r),
                   color: Colors.grey.shade200,
                 ),
-                height: 30,
-                width: 30,
+                height: 30.h,
+                width: 30.w,
                 child: Icon(Icons.groups, color: Colors.black),
               ),
             ),

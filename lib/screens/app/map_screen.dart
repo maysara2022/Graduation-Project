@@ -34,29 +34,29 @@ class _MapScreenState extends State<MapScreen> {
           child: buildImage()));
 
   Widget buildImage() => GestureDetector(
-        onDoubleTapDown: (detalis) => tapDownDetalis = detalis,
-        onDoubleTap: () {
-          final position = tapDownDetalis!.localPosition;
-          final double sclae = 3;
-          final x = -position.dx * (sclae - 1);
-          final y = -position.dy * (sclae - 1);
-          final zoomed = Matrix4.identity()
-            ..translate(x, y)
-            ..scale(sclae);
-          final value =
-              controller.value.isIdentity() ? zoomed : Matrix4.identity();
-          controller.value = value;
-        },
-        child: InteractiveViewer(
-          clipBehavior: Clip.none,
-          transformationController: controller,
-          child: AspectRatio(
-            aspectRatio: 1,
-            child: Image.asset(
-              'images/map.jpg',
-              fit: BoxFit.fill,
-            ),
-          ),
+    onDoubleTapDown: (detalis) => tapDownDetalis = detalis,
+    onDoubleTap: () {
+      final position = tapDownDetalis!.localPosition;
+      final double sclae = 3;
+      final x = -position.dx * (sclae - 1);
+      final y = -position.dy * (sclae - 1);
+      final zoomed = Matrix4.identity()
+        ..translate(x, y)
+        ..scale(sclae);
+      final value =
+      controller.value.isIdentity() ? zoomed : Matrix4.identity();
+      controller.value = value;
+    },
+    child: InteractiveViewer(
+      clipBehavior: Clip.none,
+      transformationController: controller,
+      child: AspectRatio(
+        aspectRatio: 1,
+        child: Image.asset(
+          'images/map.jpg',
+          fit: BoxFit.fill,
         ),
-      );
+      ),
+    ),
+  );
 }

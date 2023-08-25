@@ -1,13 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/bottomBar/bottom_bar_screen.dart';
 import 'package:graduationproject/utils/context-extenssion.dart';
 import '../../widgets/login textfiled.dart';
 
 class SignInScreen extends StatefulWidget {
-   SignInScreen({required this.verificationId});
+  SignInScreen({required this.verificationId});
   // SignInScreen({Key? key,required this.verificationId}) : super(key: key);
   final String verificationId;
   @override
@@ -18,9 +19,9 @@ class _SignInScreenState extends State<SignInScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _codeNumberController = TextEditingController();
   String? idCode;
-@override
-void initState() {
-  phoneAuth();
+  @override
+  void initState() {
+    phoneAuth();
     super.initState();
   }
 
@@ -36,44 +37,44 @@ void initState() {
           title: Text(
             'تسجيل الدخول',
             style: GoogleFonts.cairo(
-                fontSize: 25, color: Colors.black, fontWeight: FontWeight.w600),
+                fontSize: 25.sp, color: Colors.black, fontWeight: FontWeight.w600),
           ),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(
-                height: 60,
+              SizedBox(
+                height: 60.h,
               ),
               Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40),
-                  border: Border.all(color: Colors.black12, width: .5),
+                  borderRadius: BorderRadius.circular(40.r),
+                  border: Border.all(color: Colors.black12, width: .5.w),
                   color: Colors.white38,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10).w,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: 10.h,
                       ),
                       Text(
                         'قم بإدخال رمز التحقق ',
                         style: GoogleFonts.cairo(
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(
-                        height: 15,
+                        height: 15.h,
                       ),
 
-                      const SizedBox(
-                        height: 30,
+                      SizedBox(
+                        height: 30.h,
                       ),
                       TextFiledX(
                         controll: _codeNumberController,
@@ -82,11 +83,11 @@ void initState() {
                         hint: 'أدخل رمز التحقق ',
                         prefIcon: Icon(Icons.phone_android),
                       ),
-                      const SizedBox(
-                        height: 40,
+                      SizedBox(
+                        height: 40.h,
                       ),
                       SizedBox(
-                        height: 48,
+                        height: 48.h,
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: ()async {
@@ -97,25 +98,25 @@ void initState() {
                               Navigator.of(context).push(PageRouteBuilder(pageBuilder: (_,__,___)=>BottomBar()));
 
                             }
-                           },
+                          },
                           child: Text(
                             "تأكيد",
                             style: GoogleFonts.cairo(
-                                fontSize: 20, fontWeight: FontWeight.w600),
+                                fontSize: 20.sp, fontWeight: FontWeight.w600),
                           ),
                           style: ElevatedButton.styleFrom(
                               primary: Color(0xFFb70e0e),
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(10.r),
                               )),
                         ),
                       ),
 
                       SizedBox(
-                        height: 48,
-                        width: double.infinity,
+                        height: 48.h,
+                        width: double.infinity.w,
 
-                        ) ],
+                      ) ],
                   ),
                 ),
               ),

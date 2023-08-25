@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/widgets/emergencyItems.dart';
 
@@ -24,7 +25,7 @@ class EmergencyScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           title: Text(
             "أرقام الطوارئ",
-            style: GoogleFonts.cairo(fontSize: 22, color: Colors.black),
+            style: GoogleFonts.cairo(fontSize: 22.sp, color: Colors.black),
           ),
         ),
         body: Directionality(

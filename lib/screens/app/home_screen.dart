@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/firebase/fb_auth_controller.dart';
 import 'package:graduationproject/firebase/fb_firstore_controller.dart';
@@ -71,12 +72,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Container(
                     width: double.infinity,
-                    height: 140,
+                    height: 140.h,
                     decoration: BoxDecoration(
                         color: Color(0xFF820000),
                         borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(15),
-                            bottomRight: Radius.circular(15))),
+                            bottomLeft: Radius.circular(15.r),
+                            bottomRight: Radius.circular(15.r))),
                   ),
                   StreamBuilder<QuerySnapshot<Expense>>(
                       stream: FbFirstoreController().read(),
@@ -92,20 +93,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             itemCount: snapshot.data!.docs.length,
                             itemBuilder: (context, Index, int pageViewIndex) =>
                                 Container(
-                              margin: EdgeInsets.only(top: 20),
-                              clipBehavior: Clip.antiAlias,
-                              height: 10,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Image.network(
-                                  snapshot.data!.docs[Index]
-                                      .data()
-                                      .imageUrl
-                                      .toString(),
-                                  fit: BoxFit.cover),
-                            ),
+                                  margin: EdgeInsets.only(top: 20),
+                                  clipBehavior: Clip.antiAlias,
+                                  height: 10.h,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20.r),
+                                  ),
+                                  child: Image.network(
+                                      snapshot.data!.docs[Index]
+                                          .data()
+                                          .imageUrl
+                                          .toString(),
+                                      fit: BoxFit.cover),
+                                ),
                             options: CarouselOptions(
                               autoPlay: true,
                               viewportFraction: .98,
@@ -128,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               SizedBox(
-                height: 15,
+                height: 15.h,
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15),
@@ -140,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       texticon: 'فاتورتي',
                       fun: () {
                         bool loggedIn = SharedPrefController()
-                                .getValue<bool>(key: PrefKeys.loggedIn.name) ??
+                            .getValue<bool>(key: PrefKeys.loggedIn.name) ??
                             false;
                         String rout = loggedIn ? '/fatora_screen' : '/Unavilable';
                         Navigator.pushNamed(context, rout);
@@ -184,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.pushNamed(context, '/lastNews_screen');
                         }),
                     ConstrainedBox(
-                      constraints: BoxConstraints(maxHeight: 140),
+                      constraints: BoxConstraints(maxHeight: 140.h),
                       child: StreamBuilder<QuerySnapshot<Expense>>(
                           stream: FbFirstoreController().read(),
                           builder: (context, snapshot) {
@@ -206,10 +207,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                         clipBehavior: Clip.antiAlias,
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadiusDirectional.circular(
-                                                  15),
+                                          BorderRadiusDirectional.circular(
+                                              15.r),
                                         ),
-                                        width: 300,
+                                        width: 300.w,
                                         child: Stack(
                                           children: [
                                             Opacity(
@@ -220,11 +221,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       .imageUrl
                                                       .toString(),
                                                   fit: BoxFit.cover,
-                                                  height: 140,
-                                                  width: 300,
+                                                  height: 140.h,
+                                                  width: 300.w,
                                                 )),
                                             Positioned(
-                                              width: 270,
+                                              width: 270.w,
                                               bottom: 5,
                                               right: 8,
                                               child: Text(
@@ -235,10 +236,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 overflow: TextOverflow.ellipsis,
                                                 maxLines: 2,
                                                 style: GoogleFonts.cairo(
-                                                    fontSize: 15,
+                                                    fontSize: 15.sp,
                                                     color: Colors.white,
                                                     fontWeight:
-                                                        FontWeight.bold),
+                                                    FontWeight.bold),
                                               ),
                                             ),
                                           ],
@@ -263,7 +264,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.pushNamed(context, '/lastAds');
                         }),
                     ConstrainedBox(
-                      constraints: BoxConstraints(maxHeight: 100),
+                      constraints: BoxConstraints(maxHeight: 100.h),
                       child: StreamBuilder<QuerySnapshot<ModelAds>>(
                           stream: FbFirstoreController().adsRead(),
                           builder: (context, snapshot) {
@@ -281,24 +282,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                         .time!
                                         .toDate();
                                     var output1 =
-                                        intl.DateFormat('dd/MM/2023').format(t);
+                                    intl.DateFormat('dd/MM/2023').format(t);
 
                                     return Container(
                                       decoration: BoxDecoration(
                                         border: Border.all(
                                             color: Colors.grey.shade300),
                                         borderRadius:
-                                            BorderRadiusDirectional.circular(
-                                                10),
+                                        BorderRadiusDirectional.circular(
+                                            10.r),
                                       ),
                                       margin: EdgeInsetsDirectional.symmetric(
                                           horizontal: 7),
-                                      width: 260,
+                                      width: 260.w,
                                       child: Padding(
-                                        padding: EdgeInsets.all(5.0),
+                                        padding: EdgeInsets.all(5.0).w,
                                         child: Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               snapshot.data!.docs[index]
@@ -308,7 +309,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               overflow: TextOverflow.ellipsis,
                                               maxLines: 2,
                                               style: GoogleFonts.cairo(
-                                                fontSize: 15,
+                                                fontSize: 15.sp,
                                               ),
                                             ),
                                             Spacer(),
@@ -319,8 +320,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   color: Colors.black,
                                                   size: 20,
                                                 ),
-                                                const SizedBox(
-                                                  width: 5,
+                                                SizedBox(
+                                                  width: 5.w,
                                                 ),
                                                 Text(
                                                   output1,
@@ -338,10 +339,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             } else {
                               return Center(
                                   child: Text(
-                                'لا يوجد بيانات',
-                                style: GoogleFonts.cairo(
-                                    fontWeight: FontWeight.bold),
-                              ));
+                                    'لا يوجد بيانات',
+                                    style: GoogleFonts.cairo(
+                                        fontWeight: FontWeight.bold),
+                                  ));
                             }
                           }),
                     ),
@@ -349,7 +350,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 10.h,
               )
             ],
           ),
@@ -370,11 +371,11 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Text(
               'هل أنت مُتأكد ؟',
               style:
-                  GoogleFonts.cairo(fontWeight: FontWeight.bold, fontSize: 14),
+              GoogleFonts.cairo(fontWeight: FontWeight.bold, fontSize: 14.sp),
             ),
             content: Text(
               'تسجيل الخروج من الحساب.',
-              style: GoogleFonts.cairo(color: Colors.black45, fontSize: 14),
+              style: GoogleFonts.cairo(color: Colors.black45, fontSize: 14.sp),
             ),
             actions: [
               TextButton(
@@ -388,7 +389,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   child: Text(
                     'نعم',
-                    style: GoogleFonts.cairo(color: Colors.red, fontSize: 12),
+                    style: GoogleFonts.cairo(color: Colors.red, fontSize: 12.sp),
                   )),
               TextButton(
                   onPressed: () {
@@ -396,7 +397,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   child: Text(
                     'رجوع',
-                    style: GoogleFonts.cairo(fontSize: 12),
+                    style: GoogleFonts.cairo(fontSize: 12.sp),
                   )),
             ],
           );
