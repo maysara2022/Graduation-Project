@@ -53,26 +53,5 @@ class FbAuthController {
 
   User get user => _auth.currentUser!;
 
-  Future<void> phoneAuth() async {
-    await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: '+970598037126',
-      verificationCompleted: (PhoneAuthCredential credential) {},
-      verificationFailed: (FirebaseAuthException e) {},
-      codeSent: (String verificationId, int? resendToken) async {
 
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {},
-    );
-  }
-
-  sentCode(String authCode) async {
-    try {
-      String smsCode = authCode;
-      PhoneAuthCredential credential = PhoneAuthProvider.credential(
-          verificationId: authCode, smsCode: smsCode);
-      await _auth.signInWithCredential(credential);
-    } catch (ex) {
-      print("exption ccccccazaa");
-    }
-  }
 }

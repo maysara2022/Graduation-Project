@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:graduationproject/firebase/fb_firstore_controller.dart';
 import 'package:graduationproject/models/modelAds.dart';
 
 class EditAdsPage extends StatelessWidget {
@@ -10,7 +9,7 @@ class EditAdsPage extends StatelessWidget {
 
 
 
-  EditAdsPage({required this.ads}) {
+  EditAdsPage({super.key, required this.ads}) {
     ads.title!;
     ads.content!;
   }
@@ -21,7 +20,7 @@ class EditAdsPage extends StatelessWidget {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.all(16).w,
+          padding: const EdgeInsets.all(16).w,
           child: SingleChildScrollView(
             child: Column(
               children: [

@@ -8,6 +8,7 @@ class TextFiledX extends StatelessWidget {
         required this.title,
         required this.hint,
         this.prefIcon,
+        required this.maxLength,
         this.suffixIcon = null,
         required this.keyboardType,
         this.obscureText = false,
@@ -15,6 +16,7 @@ class TextFiledX extends StatelessWidget {
       : super(key: key);
 
   final String title;
+  final int maxLength;
   final String hint;
   final Icon? prefIcon;
   final TextInputType keyboardType;
@@ -37,12 +39,16 @@ class TextFiledX extends StatelessWidget {
         SizedBox(
           height: 48.h,
           child: TextField(
-            style: TextStyle(fontSize: 12.sp),
+
+            style: TextStyle(fontSize: 15.sp),
             controller: controll,
             obscureText: obscureText!,
             keyboardType: keyboardType,
+            maxLength: maxLength,
             textAlignVertical: TextAlignVertical.bottom,
             decoration: InputDecoration(
+              suffixText: "+970 ",
+              counter: Offstage(),
               suffixIcon: suffixIcon,
               hintText: hint,
               hintStyle: GoogleFonts.cairo(fontSize: 14.sp, color: Colors.grey),

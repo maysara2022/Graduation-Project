@@ -68,6 +68,7 @@ class _ComplaintScreenState extends State<Complaintscreen> {
                       height: 15.h,
                     ),
                     TextFiledX(
+                      maxLength: 30,
                       title: 'عنوان الشكوى',
                       hint: 'أدخل عنوان الشكوى',
                       keyboardType: TextInputType.text,

@@ -24,21 +24,21 @@ class _FatoraScreenState extends State<FatoraScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Color(0xFF820000),
+        backgroundColor: const Color(0xFF820000),
         leading: IconButton(
           onPressed: () {},
-          icon: Icon(Icons.menu),
+          icon: const Icon(Icons.menu),
         ),
         actions: [
           Visibility(
             child: IconButton(
               onPressed: () {},
-              icon: Icon(Icons.logout),
+              icon: const Icon(Icons.logout),
             ),
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
           ),
         ],
         elevation: 0,
@@ -65,10 +65,10 @@ class _FatoraScreenState extends State<FatoraScreen> {
                           width: double.infinity,
                           height: 140.h,
                           decoration: BoxDecoration(
-                              color: Color(0xFF820000),
+                              color: const Color(0xFF820000),
                               borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(50).r,
-                                  bottomRight: Radius.circular(50).r)),
+                                  bottomLeft: const Radius.circular(50).r,
+                                  bottomRight: const Radius.circular(50).r)),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 20),
@@ -105,11 +105,11 @@ class _FatoraScreenState extends State<FatoraScreen> {
                       child: ListTile(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10).r,
-                            side: BorderSide(color: Colors.black12)),
+                            side: const BorderSide(color: Colors.black12)),
                         selectedTileColor: Colors.cyan,
                         contentPadding:
-                        EdgeInsets.symmetric(vertical: 6, horizontal: 10),
-                        leading: ImageIcon(
+                        const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+                        leading: const ImageIcon(
                           AssetImage('images/dial-pad.png'),
                           color: Colors.black,
                           size: 30,
@@ -127,7 +127,7 @@ class _FatoraScreenState extends State<FatoraScreen> {
                           style: GoogleFonts.cairo(
                               fontSize: 20.sp, color: Colors.black),
                         ),
-                        trailing: Icon(
+                        trailing: const Icon(
                           Icons.numbers,
                           color: Colors.red,
                           size: 30,
@@ -138,7 +138,7 @@ class _FatoraScreenState extends State<FatoraScreen> {
                       height: 15.h,
                     ),
                     Padding(
-                      padding: EdgeInsets.all(8.0).w,
+                      padding: const EdgeInsets.all(8.0).w,
                       child: Container(
                         width: double.infinity,
                         height: 60.h,
@@ -151,7 +151,7 @@ class _FatoraScreenState extends State<FatoraScreen> {
                           padding: const EdgeInsets.all(8.0).w,
                           child: Row(
                             children: [
-                              Icon(Icons.numbers),
+                              const Icon(Icons.numbers),
                               SizedBox(
                                 width: 10.w,
                               ),
@@ -159,7 +159,7 @@ class _FatoraScreenState extends State<FatoraScreen> {
                                 'قيمة الفاتورة الحالية : ',
                                 style: GoogleFonts.cairo(fontSize: 20.sp),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Text(
                                 snapshot.data!.docs[0]
                                     .data()
@@ -175,7 +175,7 @@ class _FatoraScreenState extends State<FatoraScreen> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Container(
                         width: double.infinity,
                         height: 60.h,
@@ -188,7 +188,7 @@ class _FatoraScreenState extends State<FatoraScreen> {
                           padding: const EdgeInsets.all(8.0).w,
                           child: Row(
                             children: [
-                              Icon(Icons.numbers),
+                              const Icon(Icons.numbers),
                               SizedBox(
                                 width: 10.w,
                               ),
@@ -196,7 +196,7 @@ class _FatoraScreenState extends State<FatoraScreen> {
                                 'فاتورة الشهر السابق :',
                                 style: GoogleFonts.cairo(fontSize: 20.sp),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Text(
                                 snapshot.data!.docs[0]
                                     .data()
@@ -211,7 +211,7 @@ class _FatoraScreenState extends State<FatoraScreen> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(8.0).r,
+                      padding: const EdgeInsets.all(8.0).r,
                       child: Container(
                         width: double.infinity,
                         height: 60.h,
@@ -224,7 +224,7 @@ class _FatoraScreenState extends State<FatoraScreen> {
                           padding: const EdgeInsets.all(8.0).w,
                           child: Row(
                             children: [
-                              Icon(Icons.numbers),
+                              const Icon(Icons.numbers),
                               SizedBox(
                                 width: 10.w,
                               ),
@@ -232,7 +232,7 @@ class _FatoraScreenState extends State<FatoraScreen> {
                                 ' الفاتورة الشهر الأسبق  :',
                                 style: GoogleFonts.cairo(fontSize: 20.sp),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Text(
                                 snapshot.data!.docs[0]
                                     .data()
@@ -247,7 +247,7 @@ class _FatoraScreenState extends State<FatoraScreen> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(8.0).r,
+                      padding: const EdgeInsets.all(8.0).r,
                       child: Container(
                         width: double.infinity,
                         height: 60.h,
@@ -260,7 +260,7 @@ class _FatoraScreenState extends State<FatoraScreen> {
                           padding: const EdgeInsets.all(8.0).r,
                           child: Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.numbers,
                                 size: 28,
                               ),
@@ -272,7 +272,7 @@ class _FatoraScreenState extends State<FatoraScreen> {
                                 style: GoogleFonts.cairo(
                                     fontSize: 20.sp, fontWeight: FontWeight.bold),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Text(
                                 snapshot.data!.docs[0]
                                     .data()

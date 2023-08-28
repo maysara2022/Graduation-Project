@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:graduationproject/firebase/fb_auth_controller.dart';
+import 'package:graduationproject/prefs/shared_pref_controller.dart';
 import 'package:graduationproject/screens/auth/signIn_screen.dart';
 import 'package:graduationproject/utils/context-extenssion.dart';
 
@@ -17,22 +16,26 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _phoneNumberController=TextEditingController();
-  String verificationFailMassage='';
+  final TextEditingController _phoneNumberController = TextEditingController();
+  String verificationFailMassage = '';
   String? idCode;
+  bool isButtonDisabled = false;
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: Color(0XFFf2f2f2),
+        backgroundColor: const Color(0XFFf2f2f2),
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
           title: Text(
             'تسجيل الدخول',
             style: GoogleFonts.cairo(
-                fontSize: 25.sp, color: Colors.black, fontWeight: FontWeight.w600),
+                fontSize: 25.sp,
+                color: Colors.black,
+                fontWeight: FontWeight.w600),
           ),
           centerTitle: true,
         ),
@@ -64,7 +67,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 15.h,),
+                      SizedBox(
+                        height: 15.h,
+                      ),
                       Text(
                         'الدخول الى حسابك.',
                         style: GoogleFonts.cairo(
@@ -75,50 +80,87 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 30.h,
                       ),
                       TextFiledX(
+                        maxLength: 10,
+                        suffixIcon: IconButton(
+                            onPressed: () {},
+                            icon: Image.asset('images/alam.png')),
                         controll: _phoneNumberController,
-                        keyboardType: TextInputType.text,
+                        keyboardType: TextInputType.number,
                         title: 'رقم الجوال ',
                         hint: 'أدخل رقم الجوال الخاص بك ',
-                        prefIcon: Icon(Icons.phone_android),
+                        prefIcon: const Icon(Icons.phone_android),
+                      ),
+                      Text(
+                        verificationFailMassage,
                       ),
                       SizedBox(
-                        height: 40.h,
+                        height: 20.h,
                       ),
                       SizedBox(
                         height: 48.h,
                         width: double.infinity.w,
                         child: ElevatedButton(
-                          onPressed: () async{
+                          onPressed: isButtonDisabled
+                              ? null
+                              : () async {
+                                  setState(() {
+                                    isButtonDisabled =
+                                        true; // تعطيل الزر أثناء تنفيذ العملية
+                                  });
+                                  _checkData();
+                                  await FirebaseAuth.instance.verifyPhoneNumber(
+                                    phoneNumber:
+                                        "+970" + _phoneNumberController.text,
+                                    verificationCompleted:
+                                        (PhoneAuthCredential credential) {},
+                                    verificationFailed:
+                                        (FirebaseAuthException e) {
+                                      setState(() {
+                                        isButtonDisabled = false;
+                                      });
+                                      setState(() {
+                                        verificationFailMassage = e.code;
+                                        context.shwoMassege(
+                                            message:
+                                                'خطأ , يُرجى التحقق من رقم الجوال ',
+                                            error: true);
+                                      });
+                                    },
+                                    codeSent: (String verificationId,
+                                        int? resendToken) {
+                                      setState(() {
+                                        isButtonDisabled = false;
+                                      });
+                                      Navigator.of(context).push(
+                                          PageRouteBuilder(
+                                              pageBuilder: (_, __, ___) =>
+                                                  SignInScreen(
+                                                      verificationId:
+                                                          verificationId)));
+                                    },
+                                    timeout: const Duration(seconds: 60),
+                                    codeAutoRetrievalTimeout:
+                                        (String verificationId) {},
+                                  );
 
-                            await FirebaseAuth.instance.verifyPhoneNumber(
-                              phoneNumber: '+970599024023',
-                              verificationCompleted: (PhoneAuthCredential credential) {},
-                              verificationFailed: (FirebaseAuthException e) {
-                                setState(() {
-                                  verificationFailMassage = e.code;
-                                });
-                              },
-                              codeSent: (String verificationId, int? resendToken) {
-                                Navigator.of(context).push(PageRouteBuilder(pageBuilder: (_,__,___)=>SignInScreen(verificationId:verificationId)));
-                              },
-                              codeAutoRetrievalTimeout: (String verificationId) {},
-                            );
-
-                          },
-                          child: Text(
-                            "أرسل رمز التحقق",
-                            style: GoogleFonts.cairo(
-                                fontSize: 20, fontWeight: FontWeight.w600),
-                          ),
+                                },
                           style: ElevatedButton.styleFrom(
-                              primary: Color(0xFFb70e0e),
+                              backgroundColor: const Color(0xFFb70e0e),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.r),
                               )),
+                          child: isButtonDisabled
+                              ? const CircularProgressIndicator() // عنصر الـ Process Indicator أثناء التنفيذ
+                              : Text(
+                                  "أرسل رمز التحقق",
+                                  style: GoogleFonts.cairo(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600),
+                                ),
                         ),
                       ),
-                      Text(
-                        verificationFailMassage,
+                      SizedBox(
+                        height: 20.h,
                       ),
                       SizedBox(
                         height: 48.h,
@@ -127,26 +169,23 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             Navigator.pushNamed(context, '/bottom_screen');
                           },
+                          style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              backgroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.r)),
+                              side: const BorderSide(color: Color(0xFFb70e0e))),
                           child: Text(
                             "الدخول كزائر",
                             style: GoogleFonts.cairo(
-                                color: Color(0xFFb70e0e),
+                                color: const Color(0xFFb70e0e),
                                 fontSize: 20.sp,
                                 fontWeight: FontWeight.w600),
                           ),
-                          style: ElevatedButton.styleFrom(
-                              elevation: 0,
-                              primary: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.r)),
-                              side: BorderSide(color: Color(0xFFb70e0e))),
                         ),
                       ),
                       SizedBox(
-                        height: 50.h,
-                      ),
-                      SizedBox(
-                        height: 20.h,
+                        height: 30.h,
                       )
                     ],
                   ),

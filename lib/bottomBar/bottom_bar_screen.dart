@@ -17,11 +17,11 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   int _currentindex = 0;
-  List<BnScreen> _bnscreen = <BnScreen>[
+   final List<BnScreen> _bnscreen = <BnScreen>[
     BnScreen(title: 'Home', widget: HomeScreen()),
     BnScreen(title: 'Map', widget: MapScreen()),
     BnScreen(title: 'AddProdlem', widget: ComplaintPage()),
-    BnScreen(title: 'Setting', widget: MoreScreen()),
+    BnScreen(title: 'Setting', widget: const MoreScreen()),
   ];
 
   @override
@@ -38,11 +38,11 @@ class _BottomBarState extends State<BottomBar> {
             currentIndex: _currentindex,
             selectedLabelStyle: GoogleFonts.cairo(),
             unselectedLabelStyle: GoogleFonts.cairo(),
-            selectedItemColor: Color(0xFFb70e0e),
-            unselectedItemColor: Color(0xff384042),
+            selectedItemColor: const Color(0xFFb70e0e),
+            unselectedItemColor: const Color(0xff384042),
             iconSize: 25,
             type: BottomNavigationBarType.fixed,
-            items: [
+            items: const [
               BottomNavigationBarItem(
                   icon: ImageIcon(AssetImage('images/home.png')),
                   label: 'الرئيسية'),

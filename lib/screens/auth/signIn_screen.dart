@@ -1,16 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/bottomBar/bottom_bar_screen.dart';
+import 'package:graduationproject/prefs/shared_pref_controller.dart';
 import 'package:graduationproject/utils/context-extenssion.dart';
 import '../../widgets/login textfiled.dart';
 
 class SignInScreen extends StatefulWidget {
-  SignInScreen({required this.verificationId});
+  const SignInScreen({super.key, required this.verificationId});
+
   // SignInScreen({Key? key,required this.verificationId}) : super(key: key);
   final String verificationId;
+
   @override
   State<SignInScreen> createState() => _SignInScreenState();
 }
@@ -18,26 +20,25 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _codeNumberController = TextEditingController();
+  bool isButtonDisabled = false;
   String? idCode;
-  @override
-  void initState() {
-    phoneAuth();
-    super.initState();
-  }
+  String verificationFailMassage = '';
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: Color(0XFFf2f2f2),
+        backgroundColor: const Color(0XFFf2f2f2),
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
           title: Text(
             'تسجيل الدخول',
             style: GoogleFonts.cairo(
-                fontSize: 25.sp, color: Colors.black, fontWeight: FontWeight.w600),
+                fontSize: 25.sp,
+                color: Colors.black,
+                fontWeight: FontWeight.w600),
           ),
           centerTitle: true,
         ),
@@ -63,60 +64,88 @@ class _SignInScreenState extends State<SignInScreen> {
                         height: 10.h,
                       ),
                       Text(
-                        'قم بإدخال رمز التحقق ',
+                        'قم بإدخال رمز التحقق في الرسالة النصية ',
                         style: GoogleFonts.cairo(
-                          fontSize: 20.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+                            fontSize: 16.sp, fontWeight: FontWeight.w600),
                       ),
                       SizedBox(
-                        height: 15.h,
+                        height: 25.h,
                       ),
-
+                      const Center(
+                          child: Image(
+                        image: AssetImage('images/conversation.png'),
+                        height: 70,
+                        width: 60,
+                      )),
                       SizedBox(
                         height: 30.h,
                       ),
                       TextFiledX(
+                        maxLength: 6,
                         controll: _codeNumberController,
-                        keyboardType: TextInputType.text,
+                        keyboardType: TextInputType.number,
                         title: 'رمز التحقق',
                         hint: 'أدخل رمز التحقق ',
-                        prefIcon: Icon(Icons.phone_android),
+                        prefIcon: const Icon(Icons.screen_lock_portrait),
                       ),
+                      Text(verificationFailMassage),
                       SizedBox(
-                        height: 40.h,
+                        height: 25.h,
                       ),
                       SizedBox(
                         height: 48.h,
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: ()async {
+                          onPressed: () async {
                             _checkData();
-                            PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: widget.verificationId, smsCode: _codeNumberController.text);
-                            await _auth.signInWithCredential(credential);
-                            if(_auth.currentUser != null){
-                              Navigator.of(context).push(PageRouteBuilder(pageBuilder: (_,__,___)=>BottomBar()));
+                            setState(() {
+                              isButtonDisabled = true;
+                            });
+                            try {
+                              PhoneAuthCredential credential =
+                                  PhoneAuthProvider.credential(
+                                      verificationId: widget.verificationId,
+                                      smsCode: _codeNumberController.text);
+                              await _auth.signInWithCredential(credential);
+                              if (_auth.currentUser != null) {
+                                // ignore: use_build_context_synchronously
+                                Navigator.of(context).push(PageRouteBuilder(
+                                    pageBuilder: (_, __, ___) =>
+                                        const BottomBar()));
+                                SharedPrefController().save(email: _codeNumberController.text);
 
+                              }
+                            } on FirebaseAuthException catch (e) {
+                              setState(() {
+                                verificationFailMassage = e.code;
+                                context.shwoMassege(
+                                    message:
+                                        'خطأ , يُرجى التحقق الرمز في الرسالة ',
+                                    error: true);
+                              });
                             }
+
+                            setState(() {
+                              isButtonDisabled = false;
+                            });
                           },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFb70e0e),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.r),
+                              )),
                           child: Text(
                             "تأكيد",
                             style: GoogleFonts.cairo(
                                 fontSize: 20.sp, fontWeight: FontWeight.w600),
                           ),
-                          style: ElevatedButton.styleFrom(
-                              primary: Color(0xFFb70e0e),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.r),
-                              )),
                         ),
                       ),
-
                       SizedBox(
                         height: 48.h,
                         width: double.infinity.w,
-
-                      ) ],
+                      )
+                    ],
                   ),
                 ),
               ),
@@ -131,27 +160,8 @@ class _SignInScreenState extends State<SignInScreen> {
     if (_codeNumberController.text.isNotEmpty) {
       return true;
     }
-    context.shwoMassege(message: 'أدخل رقم الجوال أولا', error: true);
+    context.shwoMassege(
+        message: 'أدخل الكود في الرسالة النصية أولا', error: true);
     return false;
-  }
-  Future<void> phoneAuth() async {
-    await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: '+970598037126',
-      verificationCompleted: (PhoneAuthCredential credential) {},
-      verificationFailed: (FirebaseAuthException e) {},
-      codeSent: (String verificationId, int? resendToken) async {
-
-      },
-      codeAutoRetrievalTimeout: (String verificationId) {},
-    );
-  }
-  sentCode(String authCode) async {
-    try {
-      PhoneAuthCredential credential = PhoneAuthProvider.credential(
-          verificationId: idCode!, smsCode: authCode);
-      await _auth.signInWithCredential(credential);
-    } catch (ex) {
-      print("exption ccccccazaa");
-    }
   }
 }

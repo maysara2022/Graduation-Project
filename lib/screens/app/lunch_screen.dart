@@ -3,19 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:graduationproject/prefs/shared_pref_controller.dart';
 
-class lunch_screen extends StatefulWidget {
-  const lunch_screen({Key? key}) : super(key: key);
+class LunchScreen extends StatefulWidget {
+  const LunchScreen({Key? key}) : super(key: key);
 
   @override
-  State<lunch_screen> createState() => _lunch_screenState();
+  State<LunchScreen> createState() => _lunch_screenState();
 }
 
 // ignore: camel_case_types
-class _lunch_screenState extends State<lunch_screen> {
+class _lunch_screenState extends State<LunchScreen> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds:3), () {
-
+    Future.delayed(const Duration(seconds:3), () {
       bool loggedIn = SharedPrefController().getValue<bool>(key: PrefKeys.loggedIn.name)?? false;
       String rout = loggedIn ? '/bottom_screen' :'/log_up';
       Navigator.pushReplacementNamed(context, rout);
@@ -42,9 +41,8 @@ class _lunch_screenState extends State<lunch_screen> {
                   SizedBox(
                     width: 200.w,
                     height: 200.h,
-                    child: CircleAvatar(
+                    child: const CircleAvatar(
                       backgroundImage: AssetImage(
-
                         "images/logop.jpg",
                       ),
                     ),

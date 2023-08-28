@@ -43,7 +43,7 @@ class ComplaintPage extends StatelessWidget {
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, Index) {
                     return Padding(
-                      padding:  EdgeInsets.all(8.0).r,
+                      padding:  const EdgeInsets.all(8.0).r,
                       child: Card(
                         elevation: 0,
                         shape: RoundedRectangleBorder(
@@ -76,7 +76,7 @@ class ComplaintPage extends StatelessWidget {
                                       fontSize: 16.sp,
                                     ),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Container(
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(15).r,
@@ -102,7 +102,7 @@ class ComplaintPage extends StatelessWidget {
                                     'نوع الشكوى :',
                                     style: GoogleFonts.cairo(fontSize: 16.sp,),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Padding(
                                     padding: const EdgeInsets.all(4.0).w,
                                     child: Text(snapshot.data!.docs[Index]
@@ -123,7 +123,7 @@ class ComplaintPage extends StatelessWidget {
                                     'منطقة الشكوى :',
                                     style: GoogleFonts.cairo(fontSize: 16.sp),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Padding(
                                     padding: const EdgeInsets.all(4.0).w,
                                     child: Text(snapshot.data!.docs[Index]
@@ -135,7 +135,7 @@ class ComplaintPage extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             )
                           ],
@@ -145,7 +145,7 @@ class ComplaintPage extends StatelessWidget {
                   },
                 );
               } else {
-                return Center(
+                return const Center(
                   child: Text('لا يوجد بيانات'),
                 );
               }
@@ -157,7 +157,7 @@ class ComplaintPage extends StatelessWidget {
             onPressed: () {
               Navigator.pushNamed(context, '/Complaintscreen');
             },
-            backgroundColor: Color(0xFF820000),
+            backgroundColor: const Color(0xFF820000),
             child: const Icon(Icons.add, size: 35),
           ),
         ),
